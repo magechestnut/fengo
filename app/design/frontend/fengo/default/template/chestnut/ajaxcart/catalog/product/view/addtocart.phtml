@@ -1,0 +1,17 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <?php if(!$_product->isGrouped()): ?>
+        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+        <div id="qty_down_btn" class="qty_btn qty_down_btn" onclick="cqtyManager.qtyDown()"><i class="fa fa-angle-left"></i></div>
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <div id="qty_up_btn" class="qty_btn qty_up_btn" onclick="cqtyManager.qtyUp()"><i class="fa fa-angle-right"></i></div>
+        <?php endif; ?>
+        <button type="submit" title="<?php echo $buttonTitle ?>" class="button btn-cart"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <div class="ajaxcart_loading" style="display:none">
+		    <img src="<?php echo Mage::getDesign()->getSkinUrl('images/chestnut/layerednav/ajax-loader.gif') ?>" alt="Loading" />
+		</div>        
+        <?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+<?php endif; ?>

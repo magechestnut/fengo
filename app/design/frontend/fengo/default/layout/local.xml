@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+
+	<default>	
+		<reference name="head">
+			<action method="addJs"><script>chestnut/media.match.js</script></action>
+			<action method="addJs"><script>chestnut/modernizr.js</script></action>
+			<action method="addJs"><script>chestnut/enquire.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/jquery-1.7.2.min.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/jquery-noconflict.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/jquery-ui-1.10.3.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.easing.min.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.colorbox.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.accordion.min.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.lazy.min.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.ba-throttle-debounce.min.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.owlcarousel.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.bxslider.min.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.imgpreload.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.progress.js</script></action>
+
+
+			<!-- <action method="addJs"><script>chestnut/jquery/plugins/pace.js</script></action> -->
+			<action method="addJs"><script>chestnut/jquery/plugins/jquery.magnific-popup.js</script></action>
+
+
+			<!-- <action method="addJs"><script>chestnut/jquery/plugins/jquery.selectbox.js</script></action> -->
+			<action method="addJs"><script>chestnut/twitterfetcher.js</script></action>
+			<action method="addJs"><script>chestnut/bootstrap.min.js</script></action>
+			<action method="addJs"><script>chestnut/pre-chestnut.js</script></action>
+			
+            <action method="addItem" ifconfig="sales/msrp/enabled"><type>skin_js</type><name>js/msrp.js</name></action>
+			
+			<action method="addItem"><type>skin_css</type><name>css/font-icons.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/font.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/bootstrap.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/jquery.ui.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/colorbox.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/owl.carousel.min.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/jquery.bxslider.css</name><params/></action>
+			<!-- <action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/jquery.selectbox.css</name><params/></action> -->
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/grid12.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/fengo.css</name><params/></action>
+
+			<!-- <action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/pace-theme-barber-shop.css</name><params/></action> -->
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/magnific-popup.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/chestnut/fengo/progressjs.css</name><params/></action>
+
+			<action method="addCss"	ifconfig="fengo_setting/customization/custom_css"><stylesheet>css/custom.css</stylesheet></action>
+
+			<!-- CSS for IE -->
+			<action method="addCssIe"><css>css/styles-ie.css</css></action>
+			<action method="addItem"><type>skin_css</type><name>css/styles-ie8.css</name><params/><if>lte IE 8</if></action>			
+		</reference>
+		
+		<reference name="header">
+			<action method="setTemplate"><template helper="fengo/setHeader"></template></action>
+			<block type="chestnut_ajaxcart/ajaxcart_mini" name="cart_mini" as="cart_mini" template="checkout/cart/mini.phtml" >
+				<action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/mini/item.phtml</template></action>
+				<action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/mini/item.phtml</template></action>
+				<action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/mini/item.phtml</template></action>
+				<block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+					<label>Shopping Cart Sidebar Extra Actions</label>
+				</block>
+			</block>			
+			<block type="chestnut_ajaxcart/ajaxcart_mini" name="cart_mini_type2" as="cart_mini_type2" template="checkout/cart/mini-type2.phtml" >
+				<action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/mini/item.phtml</template></action>
+				<action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/mini/item.phtml</template></action>
+				<action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/mini/item.phtml</template></action>
+				<block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+					<label>Shopping Cart Sidebar Extra Actions</label>
+				</block>
+			</block>
+			<block type="directory/currency" name="currency" template="directory/currency.phtml"/>
+			<block type="cms/block" name="slogan" as="slogan" before="slideshow">
+				<action method="setBlockId"><block_id>block_slogan</block_id></action>
+			</block>
+			<block type="core/template" name="top.search.new" as="topSearchNew" template="catalogsearch/form.mini.new.phtml"/>
+		</reference>
+		
+		<reference name="top.links">
+			<remove name="checkout_cart_link" />
+			<block type="checkout/links" name="checkout_link">
+				<action method="addCheckoutLink"></action>
+			</block>
+			<remove name="wishlist_link" />
+			<block type="fengo/links_links" name="wishlist_new_link" />
+			<action method="addLinkBlock"><blockName>wishlist_new_link</blockName></action>
+		</reference>
+		
+		<reference name="root">
+			<block type="core/text_list" name="main_before_top" as="main_before_top" translate="label">
+				<label>Main Before Top</label>
+			</block>
+			<block type="core/text_list" name="preface" as="preface" translate="label">
+				<label>Page Preface</label>
+			</block>
+			<block type="core/text_list" name="postscript" as="postscript" translate="label">
+				<label>Page Postscript</label>
+			</block>
+		</reference>
+
+		<remove name="right.permanent.callout"/>
+		<remove name="left.permanent.callout"/>
+		<remove name="sale.reorder.sidebar" />
+
+		<reference name="product.info">
+			<action method="addReviewSummaryTemplate"><type>default</type><template>review/helper/summary-default.phtml</template></action>
+			<action method="addReviewSummaryTemplate"><type>short</type><template>review/helper/summary-short.phtml</template></action>
+		</reference>
+		
+		<reference name="right">
+			<block type="cms/block" name="block_right_top" before="-">
+				<action method="setBlockId" ifconfig="fengo_setting/sidebar_blocks/block_right_top"><block_id>block_right_top</block_id></action>
+			</block>			
+			<block type="cms/block" name="block_right_bottom" after="-">
+				<action method="setBlockId" ifconfig="fengo_setting/sidebar_blocks/block_right_bottom"><block_id>block_right_bottom</block_id></action>
+			</block>
+		</reference>
+		
+		<reference name="left">
+			<remove name="left.newsletter"/>
+			<action method="unsetChild"><name>currency</name></action>
+			
+			<block type="cms/block" name="block_left_top" before="-">
+				<action method="setBlockId" ifconfig="fengo_setting/sidebar_blocks/block_left_top"><block_id>block_left_top</block_id></action>
+			</block>
+			<block type="cms/block" name="block_left_bottom" after="-">
+				<action method="setBlockId" ifconfig="fengo_setting/sidebar_blocks/block_left_bottom"><block_id>block_left_bottom</block_id></action>
+			</block>			
+		</reference>
+		
+		<reference name="footer">
+			<action method="setTemplate"><template helper="fengo/setFooter"></template></action>
+			<block type="newsletter/subscribe" name="newsletter" as="newsletter" template="newsletter/subscribe.phtml"/>
+			
+            <block type="cms/block" name="block_footer_bottom_left">
+                <action method="setBlockId"><block_id>block_footer_bottom_left</block_id></action>
+            </block>
+            
+            <block type="cms/block" name="block_footer_bottom_right">
+                <action method="setBlockId"><block_id>block_footer_bottom_right</block_id></action>
+            </block>
+
+            <action method="unsetChild" ifconfig="fengo_setting/footer/newsletter"><name>newsletter</name></action>
+            <action method="unsetChild" ifconfig="fengo_setting/footer/footer_links"><name>footer_links</name></action>
+            <action method="unsetChild" ifconfig="fengo_setting/footer/store_switcher"><name>store_switcher</name></action>
+		</reference>
+		
+		<reference name="before_body_end">
+			<block type="core/template" name="footer.theme.scripts" template="page/html/c-script.phtml" before="-" />
+		</reference>		
+	</default>
+	
+    <page_two_columns_left translate="label">
+		<reference name="left">
+			<action method="unsetChild"><name>paypal.partner.right.logo</name></action>
+		</reference>
+    </page_two_columns_left>
+
+    <page_two_columns_right translate="label">
+		<reference name="right">
+			<action method="unsetChild"><name>paypal.partner.right.logo</name></action>
+		</reference>
+    </page_two_columns_right>
+
+	<page_three_columns>
+		<reference name="right">
+			<action method="unsetChild"><name>paypal.partner.right.logo</name></action>
+		</reference>
+		
+		<reference name="left">
+			<action method="unsetChild"><name>paypal.partner.right.logo</name></action>
+		</reference>
+	</page_three_columns>
+
+	<fengo_quickview_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+            <action method="setIsHandle"><applied>1</applied></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>varien/product.js</script></action>
+            <action method="addJs"><script>varien/configurable.js</script></action>
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <action method="addJs"><script>chestnut/jquery/plugins/jquery.form.js</script></action>
+        </reference>
+        <reference name="content">
+            <block type="catalog/product_view" name="product.info" template="chestnut/ajaxcart/catalog/product/quickview.phtml">
+                <block type="catalog/product_view_media" name="product.quickview.media" as="quickview_media" template="chestnut/ajaxcart/catalog/product/quickview/media.phtml"/>
+                <block type="catalog/product_view" name="product.info.addtocart" as="addtocart" template="chestnut/ajaxcart/catalog/product/view/addtocart.phtml"/>
+                <block type="catalog/product_view" name="product.info.options.wrapper" as="product_options_wrapper" template="catalog/product/view/options/wrapper.phtml" translate="label">
+                    <label>Info Column Options Wrapper</label>
+                    <block type="core/template" name="options_js" template="catalog/product/view/options/js.phtml"/>
+                    <block type="catalog/product_view_options" name="product.info.options" as="product_options" template="catalog/product/view/options.phtml">
+                        <action method="addOptionRenderer"><type>text</type><block>catalog/product_view_options_type_text</block><template>catalog/product/view/options/type/text.phtml</template></action>
+                        <action method="addOptionRenderer"><type>file</type><block>catalog/product_view_options_type_file</block><template>catalog/product/view/options/type/file.phtml</template></action>
+                        <action method="addOptionRenderer"><type>select</type><block>catalog/product_view_options_type_select</block><template>catalog/product/view/options/type/select.phtml</template></action>
+                        <action method="addOptionRenderer"><type>date</type><block>catalog/product_view_options_type_date</block><template>catalog/product/view/options/type/date.phtml</template></action>
+                    </block>
+                    <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
+                </block>
+                <block type="catalog/product_view" name="product.info.options.wrapper.bottom" as="product_options_wrapper_bottom" template="catalog/product/view/options/wrapper/bottom.phtml" translate="label">
+                    <label>Bottom Block Options Wrapper</label>
+                    <action method="insert"><block>product.tierprices</block></action>
+                    <!-- <block type="catalog/product_view" name="product.clone_prices" as="prices" template="catalog/product/view/price_clone.phtml"/> -->
+                    <action method="append"><block>product.info.addtocart</block></action>
+                    <action method="append"><block>product.info.addto</block></action>
+                </block>
+
+                <block type="core/template_facade" name="product.info.container1" as="container1">
+                    <action method="setDataByKey"><key>alias_in_layout</key><value>container1</value></action>
+                    <action method="setDataByKeyFromRegistry"><key>options_container</key><key_in_registry>product</key_in_registry></action>
+                    <action method="append"><block>product.info.options.wrapper</block></action>
+                    <action method="append"><block>product.info.options.wrapper.bottom</block></action>
+                </block>
+                <block type="core/template_facade" name="product.info.container2" as="container2">
+                    <action method="setDataByKey"><key>alias_in_layout</key><value>container2</value></action>
+                    <action method="setDataByKeyFromRegistry"><key>options_container</key><key_in_registry>product</key_in_registry></action>
+                    <action method="append"><block>product.info.options.wrapper</block></action>
+                    <action method="append"><block>product.info.options.wrapper.bottom</block></action>
+                </block>
+                <action method="unsetCallChild"><child>container1</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
+                <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
+            </block>
+        </reference>
+	</fengo_quickview_index>
+
+	<customer_logged_in>
+        <reference name="top.links">
+        	<action method="removeLinkByUrl"><url helper="customer/getLogoutUrl" /></action>
+            <action method="addLink" translate="label title" module="customer"><label>Log Out</label><url helper="customer/getLogoutUrl"/><title>Log Out</title><prepare/><urlParams/><position>100</position><liParams>hide-below-768</liParams></action>
+        </reference>
+    </customer_logged_in>
+	
+	<customer_logged_out>
+        <reference name="top.links">
+        	<action method="removeLinkByUrl"><url helper="customer/getLoginUrl" /></action>
+            <action method="addLink" translate="label title" module="customer"><label>Log In</label><url helper="customer/getLoginUrl"/><title>Log In</title><prepare/><urlParams/><position>100</position><liParams>show-between-960-768</liParams></action>
+            <action method="addLink" translate="label title" module="customer"><label>Log In or Register</label><url helper="customer/getLoginUrl"/><title>Log In or Register</title><prepare/><urlParams/><position>101</position><liParams>hide-below-960</liParams></action>
+        </reference>
+        <remove name="reorder"></remove>
+    </customer_logged_out>
+
+    <catalog_category_default>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+		</reference>
+		<reference name="preface">
+			<block type="cms/block" name="category_banner">
+				<action method="setBlockId"><block_id helper="fengo/setCategoryBlock"></block_id></action>
+			</block>
+		</reference>
+    	<reference name="product_list">
+    		<action method="addReviewSummaryTemplate"><type>default</type><template>review/helper/summary-default.phtml</template></action>
+    		<action method="addReviewSummaryTemplate"><type>short</type><template>review/helper/summary-short.phtml</template></action>
+    	</reference>
+    	<reference name="left">
+			<block type="chestnut_products/list_bestsellers" name="bestsellers_left_sidebar" template="chestnut/home/bestsellers.phtml" />
+			<action method="unsetChild"><name>currency</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_tags"><name>tags_popular</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_compare"><name>catalog.compare.sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_cart"><name>cart_sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_nav"><name>catalog.leftnav</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_wishlist"><name>wishlist_sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_bestsellers"><name>bestsellers_left_sidebar</name></action>
+			<block type="cms/block" name="category_left_banner">
+				<action method="setBlockId"><block_id>category_sidebar_banner</block_id></action>
+			</block>
+		</reference>
+    	<reference name="right">
+			<block type="chestnut_products/list_bestsellers" name="bestsellers_right_sidebar" template="chestnut/home/bestsellers.phtml" />
+			<action method="unsetChild"><name>currency</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_paypal"><name>paypal.partner.right.logo</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_cart"><name>cart_sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_reorder"><name>reorder</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_compare"><name>catalog.compare.sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_compared"><name>right.reports.product.compared</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_viewed"><name>right.reports.product.viewed</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_wishlist"><name>wishlist</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_reorder"><name>sale.reorder.sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_poll"><name>right.poll</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_bestsellers"><name>bestsellers_right_sidebar</name></action>
+			<block type="cms/block" name="category_right_banner">
+				<action method="setBlockId"><block_id>category_sidebar_banner</block_id></action>
+			</block>
+		</reference>
+    </catalog_category_default>
+	
+	<catalog_category_layered>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+		</reference>
+		<reference name="preface">
+			<block type="cms/block" name="category_banner">
+				<action method="setBlockId"><block_id helper="fengo/setCategoryBlock"></block_id></action>
+			</block>
+		</reference>
+    	<reference name="product_list">
+    		<action method="addReviewSummaryTemplate"><type>default</type><template>review/helper/summary-default.phtml</template></action>
+    		<action method="addReviewSummaryTemplate"><type>short</type><template>review/helper/summary-short.phtml</template></action>
+    	</reference>
+    	<reference name="left">
+			<block type="chestnut_products/list_bestsellers" name="bestsellers_left_sidebar" template="chestnut/home/bestsellers.phtml" />
+			<action method="unsetChild"><name>currency</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_tags"><name>tags_popular</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_compare"><name>catalog.compare.sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_cart"><name>cart_sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_nav"><name>catalog.leftnav</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_wishlist"><name>wishlist_sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/left_bestsellers"><name>bestsellers_left_sidebar</name></action>
+			<block type="cms/block" name="category_left_banner">
+				<action method="setBlockId"><block_id>category_sidebar_banner</block_id></action>
+			</block>
+		</reference>
+    	<reference name="right">
+			<block type="chestnut_products/list_bestsellers" name="bestsellers_right_sidebar" template="chestnut/home/bestsellers.phtml" />
+			<action method="unsetChild"><name>currency</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_paypal"><name>paypal.partner.right.logo</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_cart"><name>cart_sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_reorder"><name>reorder</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_compare"><name>catalog.compare.sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_compared"><name>right.reports.product.compared</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_viewed"><name>right.reports.product.viewed</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_viewed"><name>left.reports.product.viewed</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_wishlist"><name>wishlist</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_reorder"><name>sale.reorder.sidebar</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_poll"><name>right.poll</name></action>
+			<action method="unsetChild" ifconfig="fengo_setting/category_view/right_bestsellers"><name>bestsellers_right_sidebar</name></action>
+			<block type="cms/block" name="category_right_banner">
+				<action method="setBlockId"><block_id>category_sidebar_banner</block_id></action>
+			</block>
+		</reference>
+    </catalog_category_layered>
+
+    <catalog_product_view>
+    	<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="product.info">
+        	<remove name="product.clone_prices" />
+			<remove name="product.description" />
+			<remove name="product.attributes" />
+			<remove name="product.info.upsell" />
+			<remove name="product_tag_list" />
+
+			<block type="catalog/product_view_description" name="product.new.description" as="description" template="catalog/product/view/description.phtml">
+                <action method="addToParentGroup" ifconfig="fengo_setting/product_page/description"><group>detailed_info</group></action>
+        		<action method="setTitle" translate="value"><value helper="fengo/product/setDescriptionTitle"></value></action>
+            </block>
+
+			<block type="catalog/product_view_attributes" name="product.new.attributes" as="additional" template="catalog/product/view/attributes.phtml">
+                <action method="addToParentGroup" ifconfig="fengo_setting/product_page/attribute"><group>detailed_info</group></action>
+        		<action method="setTitle" translate="value"><value helper="fengo/product/setAttributeTitle"></value></action>
+            </block>
+
+	        <block type="review/product_view_list" name="product.reviews" as="reviews" template="review/product/view/list.phtml" after="additional">
+	        	<block type="review/form" name="product.review.form" as="review_form">
+                    <block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+                        <label>Review Form Fields Before</label>
+                        <action method="setMayBeInvisible"><value>1</value></action>
+                    </block>
+                </block>
+	            <action method="addToParentGroup" ifconfig="fengo_setting/product_page/reviews"><group>detailed_info</group></action>
+	            <action method="setTitle" translate="value"><value helper="fengo/product/setReviewsTitle"></value></action>
+	        </block>
+
+	        <block type="catalog/product_list_upsell" name="catalog.product.upsell" as="product_upsell" template="catalog/product/list/upsell.phtml">
+                <action method="setColumnCount"><columns>4</columns></action>
+                <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+	            <action method="addToParentGroup" ifconfig="fengo_setting/product_page/upsell"><group>detailed_info</group></action>
+	            <action method="setTitle" translate="value"><value helper="fengo/product/setUpsellTitle"></value></action>
+            </block>
+
+	        <block type="catalog/product_view" name="product.short.description" as="short_description" template="catalog/product/view/short_description.phtml" before="product.description">
+	            <action method="addToParentGroup" ifconfig="fengo_setting/product_page/short_description"><group>detailed_info</group></action>
+	            <action method="setTitle" translate="value"><value helper="fengo/product/setShortDescriptionTitle"></value></action>
+	        </block>
+
+			<block type="catalog/product_list_related" name="catalog.product.related" as="product_related" template="catalog/product/list/related.phtml" />
+
+	        <block type="tag/product_list" name="product.tag.list" as="product_tag_list" after="-" template="tag/list.phtml">
+                <block type="page/html_wrapper" name="product.tag.list.list.before" as="list_before" translate="label">
+                    <label>Tags List Before</label>
+                    <action method="setMayBeInvisible"><value>1</value></action>
+                </block>
+                <action method="addToParentGroup" ifconfig="fengo_setting/product_page/tags"><group>detailed_info</group></action>
+	            <action method="setTitle" translate="value"><value helper="fengo/product/setTagsTitle"></value></action>
+            </block>
+
+            <block type="catalog/product_view" name="product.info.share" as="c_share" template="catalog/product/view/share.phtml"/>
+	        <!--
+		    	<block type="catalog/product_view_tabs" name="product.info.tabs" as="product_info_tabs" template="catalog/product/view/tabs.phtml">
+		    		<action method="addTab" translate="title" module="catalog"><alias>description</alias><title>Product Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
+		    		<action method="addTab" translate="title" module="catalog"><alias>tabreviews</alias><title>Reviews</title><block>review/product_view_list</block><template>review/product/view/list.phtml</template></action>
+		    	</block>
+		    -->
+	    </reference>
+
+	    <reference name="before_body_end">
+            <block type="page/html_wrapper" name="google_snippets_wrapper">
+                <block type="fengo/google_snippets" name="google_snippets" template="chestnut/google/snippets.phtml" />
+            </block>
+        </reference>
+	</catalog_product_view>
+
+	<PRODUCT_TYPE_bundle translate="label" module="bundle">
+        <reference name="product.info.bundle">
+        	<remove name="bundle.prices" />
+        </reference>
+        <reference name="product.info">
+            <block type="bundle/catalog_product_price" name="bundle.prices.new" as="bundle_prices" template="bundle/catalog/product/view/price.phtml">
+                <action method="setMAPTemplate"><tmpl>catalog/product/price_msrp_item.phtml</tmpl></action>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_bundle>
+
+	<checkout_cart_index>
+		<reference name="checkout.cart">
+			<remove name="checkout.cart.coupon" />
+			<remove name="checkout.cart.shipping" />
+			<remove name="checkout.cart.crosssell" />
+
+			<block type="fengo/home_tabs" name="checkout.cart.tabs" as="cart_tabs" template="checkout/cart/tabs.phtml">
+				<action method="addTab"><alias>cart_coupon</alias><title>Discount Codes</title><block>checkout/cart_coupon</block><template>checkout/cart/coupon.phtml</template></action>
+				<action method="addTab"><alias>cart_shipping</alias><title>Estimate Shipping And Taxes</title><block>checkout/cart_shipping</block><template>checkout/cart/shipping.phtml</template></action>
+				<action method="addTab"><alias>cart_crosssell</alias><title>Crosssell</title><block>checkout/cart_crosssell</block><template>checkout/cart/crosssell.phtml</template></action>
+			</block>
+		</reference>
+		<reference name="breadcrumbs">
+        	<action method="addCrumb">
+				<name>home</name>
+				<params helper="fengo/getHomeParams" />
+			</action>
+			<action method="addCrumb">
+				<name>shopping-cart</name>
+				<params>
+					<label>Shopping Cart</label>
+					<title>Shopping Cart</title>
+					<link/>
+				</params>
+			</action>
+        </reference>
+	</checkout_cart_index>
+
+	<checkout_onepage_index>
+    	<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+		<reference name="breadcrumbs">
+        	<action method="addCrumb">
+				<name>home</name>
+				<params helper="fengo/getHomeParams" />
+			</action>
+			<action method="addCrumb">
+				<name>checkout</name>
+				<params>
+					<label>Checkout</label>
+					<title>Checkout</title>
+					<link/>
+				</params>
+			</action>
+        </reference>
+	</checkout_onepage_index>
+
+	<checkout_onepage_success>
+    	<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+	</checkout_onepage_success>
+
+	<catalog_product_compare_index>
+        <reference name="breadcrumbs">
+        	<action method="addCrumb">
+				<name>home</name>
+				<params helper="fengo/getHomeParams" />
+			</action>
+			<action method="addCrumb">
+				<name>comparison</name>
+				<params>
+					<label>Product Comparison</label>
+					<title>Product Comparison</title>
+					<link/>
+				</params>
+			</action>
+        </reference>
+
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+		<reference name="catalog.compare.list">
+			<action method="addReviewSummaryTemplate"><type>short</type><template>review/helper/summary-short.phtml</template></action>
+		</reference>
+	</catalog_product_compare_index>
+
+	<contacts_index_index translate="label">
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+		<reference name="breadcrumbs">
+        	<action method="addCrumb">
+				<name>home</name>
+				<params helper="fengo/getHomeParams" />
+			</action>
+			<action method="addCrumb">
+				<name>contactus</name>
+				<params>
+					<label>Contact Us</label>
+					<title>Contact Us</title>
+					<link/>
+				</params>
+			</action>
+        </reference>
+
+        <reference name="content">
+            <block type="core/template" template="chestnut/contacts/map.phtml" before="-" name="contacts.map" />
+            <block type="core/template" template="chestnut/contacts/details.phtml" after="-" name="contacts.details" />
+        </reference>
+
+        <reference name="contactForm">
+            <block type="core/text_list" name="form.additional.info">
+                <block type="captcha/captcha" name="captcha.contacts">
+                    <reference name="head">
+                        <action method="addJs"><file>mage/captcha.js</file></action>
+                    </reference>
+                    <action method="setFormId"><formId>contact_form</formId></action>
+                    <action method="setImgWidth"><width>230</width></action>
+                    <action method="setImgHeight"><width>50</width></action>
+                </block>
+            </block>
+        </reference>
+    </contacts_index_index>
+
+    <customer_account>
+        <reference name="breadcrumbs">
+        	<action method="addCrumb">
+				<name>home</name>
+				<params helper="fengo/getHomeParams" />
+			</action>
+			<action method="addCrumb">
+				<name>my-account</name>
+				<params>
+					<label>My Account</label>
+					<title>My Account</title>
+					<link/>
+				</params>
+			</action>
+        </reference>
+
+    	<reference name="left">
+	    	<action method="unsetChild"><name>cart_sidebar</name></action>
+	    	<action method="unsetChild"><name>catalog.compare.sidebar</name></action>
+	    </reference>
+    </customer_account>
+
+    <review_product_list>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="product.info">
+        	<action method="unsetChild"><name>product.info.media</name></action>
+        	<block type="catalog/product_view_media" name="product.info.media" as="media" template="catalog/product/view/media.phtml" />
+        	<block type="catalog/product_view" name="product.info.share" as="c_share" template="catalog/product/view/share.phtml"/>
+        </reference>
+    </review_product_list>
+
+    <review_product_view>
+        <reference name="breadcrumbs">
+        	<action method="addCrumb">
+				<name>home</name>
+				<params helper="fengo/getHomeParams" />
+			</action>
+			<action method="addCrumb">
+				<name>review</name>
+				<params>
+					<label>Review</label>
+					<title>Review Page</title>
+					<link/>
+				</params>
+			</action>
+        </reference>
+    </review_product_view>
+
+    <catalogsearch_result_index>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="left">
+			<action method="unsetChild"><name>currency</name></action>
+		</reference>	
+	</catalogsearch_result_index>
+	
+	<catalogsearch_advanced_index>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="left">
+			<action method="unsetChild"><name>right_currency</name></action>
+			<action method="unsetChild"><name>paypal.partner.right.logo</name></action>
+		</reference>		
+	</catalogsearch_advanced_index>
+
+	<catalogsearch_advanced_result>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="right">
+			<action method="unsetChild"><name>right_currency</name></action>
+			<action method="unsetChild"><name>paypal.partner.right.logo</name></action>
+		</reference>		
+	</catalogsearch_advanced_result>
+</layout>

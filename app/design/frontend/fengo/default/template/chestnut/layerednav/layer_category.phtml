@@ -1,0 +1,14 @@
+<?php if ($this->getConfig('general/show_categories')) : ?>
+	<ol>
+	<?php foreach ($this->getItems() as $_item): ?>
+	    <li>
+	        <?php if ($_item->getIsCurrent()): ?>
+	            <span class="current-category category-level-<?php echo $_item->getLevel()?>"><?php echo $_item->getLabel() ?></span>
+	        <?php  else: ?>
+	            <a id="category-<?php echo $_item->getCategoryId()?>" href="<?php echo $this->htmlEscape($_item->getUri()) ?>" class="chestnut_layerednav_category category-level-<?php echo $_item->getLevel()?>"><?php echo $_item->getLabel() ?></a>
+	            <?php if($_item->getCount()) echo '(' . $_item->getCount() . ')'; ?>
+	        <?php endif; ?>
+	    </li>
+	<?php endforeach; ?>
+	</ol>
+<?php endif; ?>

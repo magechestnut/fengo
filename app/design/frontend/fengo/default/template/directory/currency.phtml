@@ -1,0 +1,56 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php if($this->getCurrencyCount()>1): ?>
+    <?php
+        $curCurrencyName = '';
+        $curCurrencyCode = '';
+        $html = array();
+        $html1 = array();
+        $html[] = '<ul class="dropdown-menu">';
+        $html1[] = '<ul class="dropdown-menu">';
+        foreach ($this->getCurrencies() as $_code => $_name)
+        {
+            if($_code==$this->getCurrentCurrencyCode())
+            {
+                $curCurrencyName = $_name;
+                $curCurrencyCode = $_code;
+                $html[] = '<li class="current"><a href="#">'. strtoupper($_name) .'<span class="fa fa-angle-up"></span></a></li>';
+                $html1[] = '<li class="current"><a href="#">'. strtoupper($_code) .'<span class="fa fa-angle-up"></span></a></li>';
+                break;
+            }
+        }
+        foreach ($this->getCurrencies() as $_code => $_name)
+        {
+            if($_code!=$this->getCurrentCurrencyCode())
+            {
+                $html[] = '<li><a href="'. $this->getSwitchCurrencyUrl($_code) .'">'. strtoupper($_name) . '-' . $_code .'</a></li>';
+                $html1[] = '<li><a href="'. $this->getSwitchCurrencyUrl($_code) .'">'. $_code .'</a></li>';
+            }
+        }
+        $html[] = '</ul>';
+        $html1[] = '</ul>';
+    ?>
+
+    <div class="dropdown currency-switcher">
+        <div class="dropdown-toggle">
+            <span class="value"><?php echo strtoupper($curCurrencyName); ?></span>
+            <span class="fa fa-angle-down"></span>
+            <span class="fa fa-angle-up"></span>
+        </div>
+        <?php echo implode('', $html); ?>
+    </div>
+
+    <div class="dropdown currency-switcher currency-switcher-1">
+        <div class="dropdown-toggle">
+            <span class="value"><?php echo strtoupper($curCurrencyCode); ?></span>
+            <span class="fa fa-angle-down"></span>
+            <span class="fa fa-angle-up"></span>
+        </div>
+        <?php echo implode('', $html1); ?>
+    </div>
+<?php endif; ?>

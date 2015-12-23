@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+-->
+<config>
+    <modules>
+        <Chestnut_Layerednav>
+            <version>1.0.1</version>
+        </Chestnut_Layerednav>
+    </modules>
+    <frontend>
+        <routers>
+            <chestnut_layerednav>
+                <use>standard</use>
+                <args>
+                    <module>Chestnut_Layerednav</module>
+                    <frontName>layerednav</frontName>
+                </args>
+            </chestnut_layerednav>
+        </routers>
+        <layout>
+            <updates>
+                <chestnut_layerednav>
+                    <file>chestnut_layerednav.xml</file>
+                </chestnut_layerednav>
+            </updates>
+        </layout>
+    </frontend>
+   
+    <global> 
+        <models>
+            <chestnut_layerednav>
+                <class>Chestnut_Layerednav_Model</class>
+            </chestnut_layerednav>
+        </models>
+    
+        <blocks>
+            <chestnut_layerednav>
+                <class>Chestnut_Layerednav_Block</class>
+            </chestnut_layerednav>
+            
+            <catalog>
+                <rewrite>
+                    <category_view>Chestnut_Layerednav_Block_Rewrite_CategoryView</category_view>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <helpers>
+            <chestnut_layerednav>
+                <class>Chestnut_Layerednav_Helper</class>
+            </chestnut_layerednav>
+        </helpers>
+        <resources>
+            <chestnut_layerednav_setup>
+                <setup>
+                    <module>Chestnut_Layerednav</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </chestnut_layerednav_setup>
+            <chestnut_layerednav_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </chestnut_layerednav_write>
+            <chestnut_layerednav_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </chestnut_layerednav_read>
+        </resources>
+    </global>
+    <default>
+        <chestnut_layerednav>
+            <general>
+                <enable>1</enable>
+                <show_categories>0</show_categories>
+            </general>
+        </chestnut_layerednav>
+    </default>
+</config>

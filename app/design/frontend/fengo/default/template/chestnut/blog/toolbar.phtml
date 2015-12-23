@@ -1,0 +1,22 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php if($this->getCollection()->getSize()): ?>
+<div class="toolbar clearfix">
+        <p class="total-count grid12-4 grid12-8-below-768">
+            <?php if($this->getLastPageNum()>1): ?>
+                <?php echo $this->__('Items %s to %s of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
+            <?php else: ?>
+                <?php echo $this->__('%s Item(s)', $this->getTotalNum()) ?>
+            <?php endif; ?>
+        </p>
+
+        <div class="pager grid12-8 grid-full-below-768">
+            <?php echo $this->getPagerHtml() ?>
+        </div>
+</div>
+<?php endif ?>

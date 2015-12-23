@@ -1,0 +1,29 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php $title = ($this->getBlockName()) ? $this->getBlockName() : Mage::helper('blog')->__('Recent Posts'); ?>
+<?php if (Mage::getStoreConfig(Chestnut_Blog_Helper_Config::XML_RECENT_SIZE) && ($posts = $this->getRecent())): ?>
+<div class="recent-blog-section">
+    <h3 class="recent-title"><?php echo strtoupper($title); ?></h3>
+    <div class="blog-slider-wrapper clearfix">
+        <div id="recent-post-slider" class="recent-post-slider owlcarousel-slider itemsCustom autoPlay top-right-nav navigation">
+        <?php foreach ($posts as $post): ?>
+            <div class="item clearfix">
+                <div class="post-image c-hoveropacity grid-full no-gutter">
+                <?php if($post_image = $post->getImage()): ?>
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$post_image; ?>" alt="Post Image" />
+                <?php endif; ?>
+                </div>
+                <div class="post-title grid-full no-gutter">
+	                <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+	            </div>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    </div>    
+</div>
+<?php endif; ?>

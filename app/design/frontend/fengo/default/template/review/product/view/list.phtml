@@ -1,0 +1,57 @@
+<?php $_items = $this->getReviewsCollection()->getItems();?>
+<div class="box-collateral box-reviews clearfix" id="customer-reviews">
+    <?php if ($count = count($_items)):?>
+        <?php echo $this->getChildHtml('toolbar') ?>
+        <div class="reviews-list">
+            <h2><?php echo $count . $this->__(' Review(s) for '); ?><span><?php echo '"' . $this->getProduct()->getName() . '"'; ?></span></h2>
+            <?php foreach ($_items as $_review):?>
+            <div class="item clearfix">
+                <?php if ($avatarEnabled = $this->helper('chestnut_avatar')->enabledAvatar()) : ?>
+                <?php $_customer = Mage::getModel('customer/customer')->load($_review->getCustomerId());?>
+                <?php if ($_customer->getAvatarSrc()!="" && $_customer->getAvatarValid()==0):?>
+                    <?php $avatar = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."chestnut/avatar".$_customer->getAvatarSrc(); ?>
+                <?php elseif ($_customer->getAvatarSrc() != "" && $_customer->getAvatarValid()==1):?>
+                    <?php $avatar = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."chestnut/avatar".$_customer->getAvatarSrc(); ?>
+                <?php else:?>
+                    <?php $avatar = $this->getSkinUrl("images/chestnut/avatar/avatar.png"); ?>
+                <?php endif;?>
+                <div class="user-avatar">
+                    <img src="<?php echo $avatar;?>" alt="<?php echo $_customer->getName();?>" />
+                </div>
+                <?php endif; ?>
+                <div class="detail <?php if ($avatarEnabled): ?>avatar<?php endif;?>">
+                    <div class="review-title">
+                        <a href="<?php echo $this->getReviewUrl($_review->getId()) ?>"><?php echo $this->escapeHtml($_review->getTitle()) ?></a>
+                    </div>
+                    <?php $_votes = $_review->getRatingVotes(); ?>
+                    <?php if (count($_votes) > 0): ?>
+                    <?php
+                        $_percent = 0;
+                        foreach ($_votes as $_vote) {
+                            $_percent = $_percent + $_vote->getPercent();
+                        }
+                        $_percent = $_percent / count($_votes);
+                    ?>
+                    <div class="ratings">
+                        <div class="rating-box">
+                            <div class="rating" style="width:<?php echo $_percent ?>%"></div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <div class="review-detail"><?php echo nl2br($this->escapeHtml($_review->getDetail())) ?></div>
+                    <div class="date"><?php echo $this->__('<span>%s</span>', $this->escapeHtml($_review->getNickname())) ?><?php echo $this->__(', %s', date('d.m.Y', strtotime($_review->getCreatedAt()))) ?></div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php echo $this->getChildHtml('toolbar') ?>
+    <?php else: ?>
+        <?php echo $this->getChildHtml('toolbar') ?>
+        <div class="reviews-list">
+            <h2><?php echo $this->__('No Review for '); ?><span><?php echo '"' . $this->getProduct()->getName() . '"'; ?></span></h2>
+            <div class="detail"><?php echo $this->__('Be the first to review this product'); ?></div>
+        </div>
+        <?php echo $this->getChildHtml('toolbar') ?>
+    <?php endif; ?>
+    <?php echo $this->getChildHtml('review_form') ?>
+</div>

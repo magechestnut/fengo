@@ -1,0 +1,79 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php $theme = $this->helper('fengo'); ?>
+<?php if($this->getItems()->getSize()): ?>
+<div class="box-collateral box-related">
+    <div class="seperator-left seperator"></div>
+    <h2><?php echo $this->__('Related Products') ?></h2>
+    <div class="seperator-right seperator"></div>
+    <div class="clearfix"></div>
+    <div class="related-slider clearfix owlcarousel-slider navigation autoPlay itemsCustom style2">
+        <?php foreach($this->getItems() as $_item): ?>
+            <div class="item">
+                <div class="product-media">
+                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(280, 364); ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
+                        <div class="product-labels">
+                            <?php if (!$_item->isSaleable() && $theme->getSetting('category_view/out_of_stock')): ?>
+                                <p class="out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                            <?php endif; ?>
+                            <?php 
+                                $date = date("Y-m-d 00:00:00");
+                                $newtodate = $_item['news_to_date'];
+                                $newfromdate = $_item['news_from_date'];
+                            ?>
+                            <?php if ($theme->getSetting('category_view/new')) {
+                                if (isset($newfromdate)) { if (isset($newtodate) and $date >= $newfromdate and $date <= $newtodate) { ?>
+                                <p class="new-product"><span><?php echo $this->__('New') ?></span></p>
+                            <?php } else if (!isset($newtodate) and $date >= $newfromdate) { ?>
+                                <p class="new-product"><span><?php echo $this->__('New') ?></span></p>
+                            <?php } } else { if (isset($newtodate) and $date <= $newtodate) { ?>
+                                <p class="new-product"><span><?php echo $this->__('New') ?></span></p>
+                            <?php } } } ?>
+                            <?php
+                                $regularPrice = round($_item->getPrice());
+                                $discountedPrice = round($_item->getFinalPrice());
+                                if (($regularPrice != $discountedPrice) && $theme->getSetting('category_view/discount')) :
+                            ?>
+                                <p class="discount-code"><span><?php echo round(100*$discountedPrice/$regularPrice - 100).'%' ?></span></p>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                </div>
+                <div class="name-section clearfix">
+                    <h2 class="product-name">
+                        <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a>
+                    </h2>
+                </div>
+                <div class="price-section"><?php echo $this->getPriceHtml($_item, true, '-related') ?></div>
+                <div class="review">
+                    <?php echo $this->getReviewsSummaryHtml($_item, 'short') ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    $$('.related-checkbox').each(function(elem){
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    //]]>
+    </script>
+</div>
+<?php endif ?>

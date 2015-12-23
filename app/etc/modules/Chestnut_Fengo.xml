@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category	Chestnut
+ * @package		Chestnut_Fengo
+ * @author		Chestnut
+ * @copyright	Copyright 2015 Chestnut
+ */
+ -->
+<config>
+    <modules>
+        <Chestnut_Fengo>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+				<Mage_Cms />
+				<Mage_Catalog />
+				<Mage_Review />
+			</depends>
+        </Chestnut_Fengo>
+    </modules>
+</config> 

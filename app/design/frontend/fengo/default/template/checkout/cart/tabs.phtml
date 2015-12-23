@@ -1,0 +1,39 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php 
+    $_tabs = '<div class="nav-tabs-container"><ul id="tabs" class="nav nav-tabs" data-tabs="tabs">';
+    $_panes = '<div id="tab-content" class="tab-content">';
+    $_isFirst = true;
+?>
+<?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php
+    if ($tmpBlock = $this->getChildHtml($_tab['alias'])) {
+        $_first = ($_isFirst) ? ' active' : '';
+        $_tabs .= '<li class="' . $_first . '"><a href="#' . $_tab['alias'] . '" data-toggle="tab">' . $_tab['title'] . '</a></li>';
+
+        $_panes .= '<div class="tab-pane panel panel-default' . $_first . '" id="' . $_tab['alias'] . '">';
+        $_panes .= '<div class="panel panel-heading"><a href="#' . $_tab['alias'] . '-accordion" data-parent="#tab-content" data-toggle="collapse" class="collapsed">' . $_tab['title'] . '</a></div>';
+
+        $_panes .= '<div id="' . $_tab['alias'] . '-accordion" class="panel-collapse collapse">';
+        $_panes .= '<div class="panel-body clearfix">' . $tmpBlock . '</div>';
+        $_panes .= '</div>';
+        $_panes .= '</div>';
+        $_isFirst = false;
+    }
+    ?>
+<?php endforeach; ?>
+<?php 
+    $_tabs .= '</ul></div>';
+    $_panes .= '</div>';
+?>
+
+<?php if ($_panes != ''): ?>
+    <div class="tabbable tabs-left clearfix">
+        <?php echo $_tabs . $_panes; ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,97 @@
+<?php
+	
+	$slideHelper = Mage::helper('slideshow');
+
+	// Slideshow configuration options
+	$easing = $slideHelper -> getConfig("effects/easing");
+	$mobileEasing = $slideHelper -> getConfig("effects/mobile_easing");
+	$pagination = $slideHelper -> getConfig("general/pagination");
+	$fx = $slideHelper -> getConfig("effects/fx");
+	$mobileFx = $slideHelper -> getConfig("effects/mobile_fx");
+	$gridDifference = $slideHelper -> getConfig("general/grid_difference");
+	$height = $slideHelper -> getConfig("general/height");
+	$hover = $slideHelper -> getConfig("general/stop_on_hover");
+	$thumbnails = $slideHelper -> getConfig("general/thumbnails");
+	$transPeriod = $slideHelper -> getConfig("general/trans_period");
+	$loaderType = $slideHelper -> getConfig("general/loader_type");
+	$loaderColor = $slideHelper -> getConfig("general/loader_color");
+	$loaderBgColor = $slideHelper -> getConfig("general/loader_bg_color");
+	$loaderOpacity = $slideHelper -> getConfig("general/loader_opacity");
+	$loaderPadding = $slideHelper -> getConfig("general/loader_padding");
+	$loaderStroke = $slideHelper -> getConfig("general/loader_stroke");
+	$navigation = $slideHelper -> getConfig("general/navigation");
+	$navigationHover = $slideHelper -> getConfig("general/navigation_on_hover");
+	$mobileNavHover = $slideHelper -> getConfig("general/mobile_nav_hover");
+
+	$bannerCollections = Mage::getModel('slideshow/slideshow')
+	->getCollection()
+	->addFieldToFilter(
+		array('stores', 'stores'),
+		array(
+			array('finset'=>Mage::app()->getStore()->getId()), 
+			array('eq'=>'0'))
+	)
+	->addFieldToFilter('filename', array('neq' => ''))
+	->addFieldToFilter('status', array('eq' => '1'))->setOrder("sort_order","ASC");	
+?>
+<?php if(count($bannerCollections) > 0): ?>
+
+<style type="text/css">
+.fluid_container {
+	margin: 0 auto;
+	max-width: <?php echo $slideHelper -> getConfig("general/width"); ?>px;
+	width: 100%;
+}
+</style>
+<div class="fluid_container">
+	<div class="camera_wrap" id="camera_wrap">
+	        
+	<?php foreach ($bannerCollections as $item): ?>
+		<div data-thumb="<?php echo str_replace("/slides/","/slides/thumbs/", Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$item->getFilename() )?>" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$item->getFilename() ?>" data-link="<?php echo $item->getSlideUrl() ?>" data-target="<?php echo $item->getSlideTarget() ?>">
+        	<?php if($item->getContent()): ?>
+            <div class="camera_caption fadeFromBottom">
+                <?php echo $item->getContent() ?>
+            </div>
+            <?php endif; ?>
+        </div>
+	<?php endforeach;?>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('#camera_wrap').camera({
+		alignment: 'center',
+		autoAdvance: true,
+		mobileAutoAdvance: true,
+		cols: 10,
+		rows: 7,
+		playPause: false,
+		pauseOnClick: false,
+		easing: '<?php echo $easing; ?>',
+		mobileEasing: '<?php echo $mobileEasing; ?>',
+		pagination: <?php echo $pagination; ?>,
+		pieDiameter: 40,
+		slicedCols: 6,
+		slicedRows: 4,
+		fx: '<?php echo $fx; ?>',
+		mobileFx: '<?php echo $mobileFx; ?>',
+		gridDifference: <?php echo $gridDifference; ?>,
+		height: '<?php echo $height; ?>',
+		hover: <?php echo $hover; ?>,
+		thumbnails: <?php echo $thumbnails; ?>,
+		transPeriod: <?php echo $transPeriod; ?>,
+		loader: '<?php echo $loaderType; ?>',
+		loaderColor: '<?php echo $loaderColor; ?>',
+		loaderBgColor: '<?php echo $loaderBgColor; ?>',
+		loaderOpacity: <?php echo $loaderOpacity; ?>,
+		loaderPadding: <?php echo $loaderPadding; ?>,
+		loaderStroke: <?php echo $loaderStroke; ?>,
+		navigation: <?php echo $navigation; ?>,
+		navigationHover: <?php echo $navigationHover; ?>,
+		mobileNavHover: <?php echo $mobileNavHover; ?>,
+	});
+});
+</script>
+<?php endif; ?>

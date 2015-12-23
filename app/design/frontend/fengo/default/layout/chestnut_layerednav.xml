@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <chestnut_layerednav_front_category>
+        <remove name="right"/>
+        <remove name="left"/>
+        <block type="chestnut_layerednav/layer_view" name="layer" template="chestnut/layerednav/layer.phtml"/>
+        <block type="chestnut_layerednav/list" name="root">
+            <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
+                <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                    <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                </block>
+                <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
+                <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
+                <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
+                <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>4</count></action>
+                <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+                <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+            </block>
+        </block>
+        <reference name="product_list">
+            <action method="setTemplate" ifconfig="chestnut_ajaxcart/general/enable"><template>chestnut/ajaxcart/catalog/product/list.phtml</template></action>
+        </reference>
+    </chestnut_layerednav_front_category>
+
+    <catalog_category_layered>
+        <reference name="head">
+            <action method="addCss" ifconfig="chestnut_layerednav/general/enable"><stylesheet>css/chestnut/layerednav/layerednav.css</stylesheet></action>
+            <action method="addJs" ifconfig="chestnut_layerednav/general/enable"><script>chestnut/layerednav/layerednav.js</script></action>
+        </reference>
+        <reference name="left">
+            <!-- <action method="unsetChild" ifconfig="chestnut_layerednav/general/enable">
+                <name>catalog.leftnav</name>
+            </action>
+            <block type="chestnut_layerednav/layer_view" name="filter.catalog" before="-" /> -->
+        </reference>
+        <reference name="right">
+            <block type="chestnut_layerednav/layer_view" name="filter.catalog" before="-" />
+        </reference>
+    </catalog_category_layered>
+</layout>

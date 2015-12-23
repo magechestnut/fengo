@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="footer_links">
+            <block type="blog/blog" name="add.blog.footer">               
+                <action method="addBlogLink" ifconfig="blog/menu/footer"><param>footer</param></action>
+            </block>
+        </reference>
+        <reference name="top.links">
+            <block type="blog/blog" name="add.blog.link">
+                <action method="addBlogLink" ifconfig="blog/menu/top"><param>top</param></action>              
+            </block>
+        </reference>
+        <reference name="right">
+            <block type="blog/html_sidebar" name="right.blog.menu" before="-">
+                <block type="blog/html_sidebar" template="chestnut/blog/categories.phtml" name="cblogcategories" />
+                <block type="blog/tags" name="blog_tags" />
+                <block type="blog/html_sidebar" template="chestnut/blog/latest.phtml" name="clatestposts" />
+                <block type="blog/html_sidebar" template="chestnut/blog/comments.phtml" name="ccomments" />
+                <block type="core/template" template="chestnut/blog/flickrphotos.phtml" name="cflickrphotos" />
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="blog/html_sidebar" name="left.blog.menu"  before="-">
+                <block type="blog/html_sidebar" template="chestnut/blog/categories.phtml" name="cblogcategories" />
+                <block type="blog/tags" name="blog_tags" />
+                <block type="blog/html_sidebar" template="chestnut/blog/latest.phtml" name="clatestposts" />
+                <block type="blog/html_sidebar" template="chestnut/blog/comments.phtml" name="ccomments" />
+                <block type="core/template" template="chestnut/blog/flickrphotos.phtml" name="cflickrphotos" />
+            </block>
+        </reference>
+        <reference name="left.blog.menu">
+            <action method="setTemplate"><template helper="blog/sidebar/getLeftSidebar"></template></action>
+        </reference>
+        <reference name="right.blog.menu">
+            <action method="setTemplate"><template helper="blog/sidebar/getRightSidebar"></template></action>
+        </reference>
+    </default>
+
+    <blog_index_index>
+        <reference name="footer" >
+            <block type="blog/blog" name="copyright.blog.footer" template="chestnut/blog/copyright.phtml"/>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/chestnut/blog/style.css</name></action>
+        </reference>
+        <reference name="content">
+            <block type="blog/blog" name="blog" template="chestnut/blog/blog.phtml"/>
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="cart_sidebar"/>
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+            <block type="cms/block" name="right.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="cms/block" name="left.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+    </blog_index_index>
+    
+    <blog_index_list>
+        <reference name="footer" >
+            <block type="blog/blog" name="copyright.blog.footer" template="chestnut/blog/copyright.phtml"/>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/chestnut/blog/style.css</name></action>
+        </reference>
+        <reference name="content">
+            <block type="blog/blog" name="blog" template="chestnut/blog/blog.phtml">
+                <block type="blog/html_toolbar" name="chestnut_blog_list_toolbar" template="chestnut/blog/toolbar.phtml">
+                    <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                </block>
+            </block>
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="cart_sidebar"/>
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+            <block type="cms/block" name="right.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="cms/block" name="left.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+    </blog_index_list>
+
+    <blog_post_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/chestnut/blog/style.css</name></action>
+        </reference>
+        <reference name="footer" >
+            <block type="blog/blog" name="copyright.blog.footer" template="chestnut/blog/copyright.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="blog/post" name="post" template="chestnut/blog/post.phtml">
+                <block type="blog/html_toolbar" name="chestnut_blog_list_toolbar" template="chestnut/blog/toolbar.phtml">
+                    <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                </block>
+            </block>
+        </reference>
+        <reference name="right">
+            <block type="cms/block" name="right.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="cms/block" name="left.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+    </blog_post_view>
+
+    <blog_category_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/chestnut/blog/style.css</name></action>
+        </reference>
+        <reference name="footer" >
+            <block type="blog/blog" name="copyright.blog.footer" template="chestnut/blog/copyright.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="blog/category" name="cat" template="chestnut/blog/category.phtml">
+                <block type="blog/html_toolbar" name="chestnut_blog_list_toolbar" template="chestnut/blog/toolbar.phtml">
+                    <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                </block>
+            </block>
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="cart_sidebar"/>
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+            <block type="cms/block" name="right.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="cms/block" name="left.video.block" after="blog_tags">
+                <action method="setBlockId" ifconfig="blog/menu/video_block"><block_id>c_blog_sidebar_block</block_id></action>
+            </block>
+        </reference>
+    </blog_category_view>
+    
+    <blog_rss_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/chestnut/blog/style.css</name></action>
+        </reference>
+        <reference name="footer" >
+            <block type="blog/blog" name="copyright.blog.footer" template="chestnut/blog/copyright.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="blog/rss" output="toHtml" name="rss.blog.new"/>
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="cart_sidebar"/>
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+        </reference>
+        <reference name="left">
+        </reference>
+    </blog_rss_index>
+
+    <blog_tag_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/chestnut/blog/style.css</name></action>
+        </reference>
+        <reference name="footer" >
+            <block type="blog/blog" name="copyright.blog.footer" template="chestnut/blog/copyright.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="blog/tags" template="chestnut/blog/taggedposts.phtml" name="tagged_posts" />
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="cart_sidebar"/>
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+        </reference>
+        <reference name="left">
+        </reference>
+    </blog_tag_view>
+</layout> 

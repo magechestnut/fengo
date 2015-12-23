@@ -1,0 +1,7 @@
+<?php
+    $tags = explode(',', $this->getPost()->getTags());
+    $i = 0;
+    foreach ($tags as $tag): ?>
+        <a href="<?php echo $this->getTagHref($tag); ?>"><?php echo $tag ?></a><span class="<?php echo ($i==count($tags)-1)?'last':''; ?>">,</span>
+        <?php $i++; ?>
+    <?php endforeach; ?>

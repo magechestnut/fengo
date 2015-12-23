@@ -1,0 +1,117 @@
+<?php    
+    $_productCollection=$this->getProductCollectionCustom();
+    $_productType = $this->_type;
+    $_helper = $this->helper('catalog/output');
+    $theme = $this->helper('fengo');
+?>
+<?php if ($_productCollection): ?>
+<div class="product-list-slider">
+    <div class="owlcarousel-slider navigation autoPlay itemsCustom top-right-nav">
+    <?php foreach ($_productCollection as $_product): ?>
+    <?php $_product->setOrigTypeId($_product->getTypeId());?>
+    <?php $_product->setTypeId($_productType);?>
+        <div class="item clearfix">            
+            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(350, 455); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" style="width:100%" />
+                <?php if ($theme->getSetting('category_view/hover_image')) : ?>
+                    <?php echo $theme->getHoverImgHtml($_product, 350, 455); ?>
+                <?php endif; ?>
+                <span class="product-labels">
+                    <?php if (!$_product->isSaleable() && $theme->getSetting('category_view/out_of_stock')): ?>
+                        <span class="out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></span>
+                    <?php endif; ?>
+                    <?php 
+                        $date = date("Y-m-d 00:00:00");
+                        $newtodate = $_product['news_to_date'];
+                        $newfromdate = $_product['news_from_date'];
+                    ?>
+                    <?php if ($theme->getSetting('category_view/new')) {
+                        if (isset($newfromdate)) { if (isset($newtodate) and $date >= $newfromdate and $date <= $newtodate) { ?>
+                        <span class="new-product"><span><?php echo $this->__('New') ?></span></span>
+                    <?php } else if (!isset($newtodate) and $date >= $newfromdate) { ?>
+                        <span class="new-product"><span><?php echo $this->__('New') ?></span></span>
+                    <?php } } else { if (isset($newtodate) and $date <= $newtodate) { ?>
+                        <span class="new-product"><span><?php echo $this->__('New') ?></span></span>
+                    <?php } } } ?>
+                    <?php
+                        $regularPrice = round($_product->getPrice());
+                        $discountedPrice = round($_product->getFinalPrice());
+                        if (($regularPrice != $discountedPrice) && $theme->getSetting('category_view/discount') && ($regularPrice != 0)) :
+                    ?>
+                        <span class="discount-code"><span><?php echo round(100*$discountedPrice/$regularPrice - 100).'%' ?></span></span>
+                    <?php endif; ?>
+                </span>
+                <?php if ($theme->enabledQuickView()) : ?>
+                <span data-target="<?php echo $this->getUrl('fengo/quickview/index', array('product_id' => $_product->getId()));?>" class="c-quickview"><span class="fa fa-search"></span><span class="quickview-label"><?php echo $this->__('Quick View');?></span></span>
+                <?php endif; ?>
+            </a>
+            <h2 class="product-name">
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_product->getName() ?></a>
+            </h2>
+            <?php echo $this->getPriceHtml($_product, true) ?>
+            <div class="details-section">
+                <div class="left-angle"></div>
+                <div class="review">
+                    <?php echo $this->getReviewsSummaryHtml($_product, 'default') ?>
+                </div>
+                <div class="horizontal-separator"></div>
+                <div class="product-description">
+                    <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                </div>
+                <div class="actions">
+                    <?php if($_product->isSaleable()): ?>
+                        <div class="add-to-bag grid12-6 no-gutter">
+                            <a title="<?php echo $this->__('Add to Bag') ?>" href="<?php echo $this->getAddToCartUrl($_product) ?>"><span><span><?php echo $this->__('ADD TO BAG') ?></span></span></a>
+                        </div>
+                        <div class="more-info grid12-6 no-gutter">
+                            <a title="<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>" href="<?php echo $_product->getProductUrl() ?>"><span><span><?php echo $this->__('MORE INFO') ?></span></span></a>
+                        </div>
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('OUT OF STOCK') ?></span></p>
+                    <?php endif; ?>
+                </div>
+                <div class="grid-container add-to-links">
+                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                        <div class="grid12-6"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('+ Add to Wishlist') ?></a></div>
+                    <?php endif; ?>
+                    <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                        <div class="grid12-6" style="text-align:right"><a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('+ Add to Compare') ?></a></div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    jQuery(function($) {
+        $('.product-list-slider').find('.item').hover(function() {
+            var $this = $(this);
+            $this.find('.details-section').show();
+            $this.find('.details-section').stop().animate({'opacity': '1'}, "slow")
+        }, function() {
+            var $this = $(this);
+            $this.find('.details-section').stop().animate({'opacity': '0'}, "slow", function() {
+                $this.find('.details-section').hide();
+            });
+        });
+    });
+
+    function setAjaxData(data,iframe){
+        if(data.status == 'ERROR'){
+            alert(data.message);
+        }else{
+            if(jQuery('.block-cart')){
+                jQuery('.block-cart').replaceWith(data.cartsidebar);
+            }
+            if(jQuery('.header #mini-cart')){
+                jQuery('.header #mini-cart').replaceWith(data.cartmini);
+            }
+            //jQuery.fancybox.close();
+            jQuery.magnificPopup.close();
+        }
+    }
+//]]>
+</script>
+<?php endif; ?>

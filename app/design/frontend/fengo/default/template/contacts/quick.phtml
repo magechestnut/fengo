@@ -1,0 +1,111 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php
+$theme = Mage::helper('fengo');
+$gmap_enable = $theme->getSetting('contactus/gmap_enable');
+$type = $theme->getSetting('footer/footer_style');
+$gridClass = '';
+if (($type == 'type1') && ($gmap_enable)) {
+    $gridClass = 'grid12-6 grid-full-below-960';
+} else {
+    $gridClass = 'grid-full';
+}
+if ($gmap_enable) :
+    $gmap_address = urlencode($theme->getSetting('contactus/gmap_address'));
+    $gmap_marker = $theme->getGmapMarker();
+    $gmap_url = "http://maps.googleapis.com/maps/api/geocode/json?address=$gmap_address&sensor=false";
+    
+    $ch = curl_init();
+        
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $gmap_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    
+    $raw = curl_exec($ch);
+    $gmap_data = json_decode($raw);
+    if ($gmap_data->results) :
+        $lat = $gmap_data->results[0]->geometry->location->lat;
+        $lng = $gmap_data->results[0]->geometry->location->lng;
+?>
+    <style type="text/css" scoped>
+        .gm-style img { max-width:none; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.17&amp;sensor=false"></script>
+    <script>
+    //<![CDATA[
+    var store = new google.maps.LatLng(<?php echo $lat ?>, <?php echo $lng ?>);
+    var marker;
+    var map;
+
+    function initialize() {
+        var mapOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: store,
+            panControl: false,
+            zoomControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
+            streetViewControl: false,
+            overviewMapControl: false
+        };
+
+        map = new google.maps.Map(document.getElementById('contact-gmap'), mapOptions);
+
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            animation: google.maps.Animation.DROP,
+            position: store,
+            icon: '<?php echo $gmap_marker ?>'
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'resize', initialize);
+    //]]>
+    </script>
+<?php endif;
+endif; ?>
+<div class="grid-container">
+    <?php if ($gmap_enable) : ?>
+    <div class="<?php echo $gridClass; ?> no-gutter" <?php if ($type == 'type1'): ?>style="margin-right:4%;"<?php endif;?>>
+        <div id="contact-gmap">
+        </div>
+    </div>
+    <?php endif; ?>
+    <div class="<?php echo $gridClass; ?> no-gutter">
+        <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+            <div class="fieldset">
+                <div class="field">
+                    <input name="name" id="contact_name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" placeholder="ENTER YOUR NAME" />
+                </div>
+                <div class="field">
+                    <input name="email" id="contact_email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" placeholder="ENTER YOUR E-MAIL" />
+                </div>
+                <div class="field">
+                    <textarea name="comment" id="contact_comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text textarea" cols="5" rows="3" placeholder="ENTER YOUR MESSAGE"></textarea>
+                </div>
+            </div>
+            <div class="buttons-set">
+                <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+                <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button">
+                    <span>
+                        <span><?php echo Mage::helper('contacts')->__('SEND MESSAGE') ?><i class="fa fa-angle-right"></i></span>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm');
+//]]>
+</script>

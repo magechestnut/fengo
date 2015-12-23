@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <slideshow translate="label" module="slideshow">
+            <label>Slideshow</label>
+			<class>slideshow-section</class>
+            <tab>chestnut</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>9999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<enable translate="label comment">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</enable>
+						<width translate="label comment">
+                            <label>Slider Width (px)</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry validate-number</validate>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </width>
+						<height translate="label comment">
+                            <label>Slider Height (px)</label>
+                            <comment>If this set to 0, then Height will be calculated automatically.</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry validate-number</validate>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </height>
+						<pagination translate="label comment">
+							<label>Pagination</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</pagination>
+						<thumbnails>
+							<label>Thumbnails</label>
+							<comment>If Pagination is enabled, show thumbnails when hovering on pagination.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</thumbnails>
+						<navigation translate="label comment">
+							<label>Navigation</label>
+							<comment>If enabled, then the navigation button (prev, next) will be visible, if disabled, they will be always hidden.</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</navigation>
+						<navigation_on_hover translate="label comment">
+							<label>Navigation on Hover</label>
+							<comment>If enabled, then the navigation button (prev, next) will be visible on hover state only, if disabled, they will be always visible.</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</navigation_on_hover>
+						<mobile_nav_hover translate="label comment">
+							<label>Mobile Navigation Hover</label>
+							<comment>The same as above, but only for mobile devices</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</mobile_nav_hover>
+						<trans_period>
+							<label>Trans Period</label>
+							<comment>Duration of the sliding effect in milliseconds.</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</trans_period>
+						<grid_difference>
+							<label>Grid Difference</label>
+							<comment>This value must be smaller than Trans Period.</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</grid_difference>
+						<stop_on_hover>
+							<label>Stop on Hover</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</stop_on_hover>
+						<loader_type>
+							<label>Loader Style</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_loader</source_model>							
+							<sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</loader_type>
+						<loader_color>
+							<label>Loader Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</loader_color>
+						<loader_bg_color>
+							<label>Loader Background Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</loader_bg_color>
+						<loader_opacity>
+							<label>Loader Opacity</label>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number validate-digits-range digits-range-0-1</validate>
+							<sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</loader_opacity>
+						<loader_stroke>
+							<label>Loader Width (px)</label>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</loader_stroke>
+						<loader_padding>
+							<label>Loader Padding (px)</label>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</loader_padding>
+                    </fields>
+                </general>
+                <effects translate="label">
+                    <label>Effects</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<easing translate="label comment">
+							<label>Easing</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_easing</source_model>							
+							<sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</easing>
+						<mobile_easing translate="label comment">
+							<label>Mobile Easing</label>
+							<frontend_type>select</frontend_type>
+							<comment>For mobile devices</comment>
+                            <source_model>slideshow/source_easing</source_model>							
+							<sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mobile_easing>
+						<fx translate="label comment">
+							<label>Fx</label>
+							<frontend_type>multiselect</frontend_type>
+							<comment>Select multiple rows for more than one effect</comment>
+                            <source_model>slideshow/source_fx</source_model>							
+							<sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fx>
+						<mobile_fx translate="label comment">
+							<label>Mobile Fx</label>
+							<frontend_type>multiselect</frontend_type>
+							<comment>Select multiple rows for more than one effect (For mobile devices)</comment>
+                            <source_model>slideshow/source_fx</source_model>							
+							<sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mobile_fx>
+                    </fields>
+                </effects>
+			</groups>
+		</slideshow>
+	</sections>
+</config>

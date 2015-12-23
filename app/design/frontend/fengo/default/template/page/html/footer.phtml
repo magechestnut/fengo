@@ -1,0 +1,52 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php
+    $theme = $this->helper('fengo');
+    $store = Mage::app()->getStore()->getStoreId();
+    $type = $theme->getSetting('footer/footer_style', $store);
+    $topEnabled = $theme->getSetting('footer/show_footer_top', $store);
+?>
+<div class="footer-container">
+    <?php if (($type == 'type2') && $topEnabled) : ?>
+    <div class="footer-top-container section-container">
+        <div class="footer-top footer container grid-container">
+            <?php echo $theme->getFooterBlock('block_footer_top', $type); ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    
+    <div class="footer-main-container section-container">
+        <div class="footer-main footer container grid-container">
+            <?php echo $theme->getFooterBlock('block_footer_main', $type); ?>
+        </div>
+    </div>
+    
+    <div class="footer-bottom-container section-container">
+        <div class="footer-bottom footer container grid-container">
+            <div class="grid12-6">                
+                <div class="grid-container">
+                    <?php if ($tmpBlock = $this->getChildHtml('block_footer_bottom_left')): ?>
+                        <div class="item item-left"><?php echo $tmpBlock; ?></div>
+                    <?php endif; ?>
+                </div>
+                <div class="grid-container">
+                    <p class="footer-copyright"><?php echo $this->getCopyright(); ?></p>
+                </div>
+            </div>
+
+            <div class="grid12-6">   
+                <?php if ($tmpBlock = $this->getChildHtml('block_footer_bottom_right')): ?>
+                    <div class="item item-right"><?php echo $tmpBlock; ?></div>
+                <?php endif; ?>   
+            </div>
+        </div>
+    </div>
+    
+    <a href="#top" id="scroll-to-top"><span class="fa fa-angle-up"></span></a>
+
+</div>

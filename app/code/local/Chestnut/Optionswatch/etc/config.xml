@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Chestnut_Optionswatch>
+            <version>0.1.0</version>
+        </Chestnut_Optionswatch>
+    </modules>
+
+    <frontend>
+        <layout>
+            <updates>
+                <chestnut_optionswatch>
+                    <file>chestnut_optionswatch.xml</file>
+                </chestnut_optionswatch>
+            </updates>
+        </layout>
+    </frontend>  
+    <global>       
+        <blocks>
+            <chestnut_optionswatch>
+                <class>Chestnut_Optionswatch_Block</class>
+            </chestnut_optionswatch>
+        </blocks>
+        <helpers>
+            <chestnut_optionswatch>
+                <class>Chestnut_Optionswatch_Helper</class>
+            </chestnut_optionswatch>
+        </helpers>
+    </global>
+
+    <default>
+        <chestnut_optionswatch>
+            <general>
+                <enable>1</enable>
+            </general>
+            <configuration>
+                <swatch_images><![CDATA[
+Size : 9 = 9.jpg
+Size : 9.5 = 95.jpg
+Size : 10 = 10.jpg
+Size : 10.5 = 105.jpg
+Size : 11 = 11.jpg
+Size : 12 = 12.jpg
+Color : Green = color-green.png
+Color : Blue = color-blue.png
+Color : Yellow = color-yellow.png
+Color : Black = color-black.png
+Color : White = color-white.png
+Color : Pink = color-pink.png
+Color : Blue Dark = color-blue-dark.png
+Color : Blue Jean = color-blue-jean.png
+Color : Brown = color-brown.png
+Color : Charcoal = color-charcoal.png
+Color : Cyan = color-cyan.png
+Color : Grey = color-grey.png
+Color : Indigo = color-indigo.png
+Color : Khaki = color-khaki.png
+Color : Purple = color-purple.png
+Color : Red = color-red.png
+Color : Salmon = color-salmon.png
+Color : Tan = color-tan.png
+                ]]></swatch_images>
+            </configuration>
+        </chestnut_optionswatch>
+    </default>
+</config>

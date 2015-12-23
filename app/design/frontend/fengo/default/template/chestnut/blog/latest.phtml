@@ -1,0 +1,52 @@
+<?php if (Mage::getStoreConfig(Chestnut_Blog_Helper_Config::XML_RECENT_SIZE) && ($posts = $this->getRecent())): ?>
+<?php $postCount = $posts->count(); ?>
+<div class="block block-blog-recent">
+    <div class="block-title">
+        <strong><span><?php echo Mage::helper('blog')->__('Latest Posts'); ?></span></strong>
+    </div>
+    <div class="block-content clearfix">
+        <div class="itemslider-wrapper latest-post-slider-wrapper">
+	        <div id="latest-post-slider" class="latest-post-slider">
+	        <?php $i=0; foreach ($posts as $post): ?>
+		        <?php if ($i++%2 == 0) : ?>
+		        <div class="column-item clearfix">
+		        <?php endif; ?>
+		            <div class="item clearfix">
+		                <div class="post-image grid-full no-gutter">
+		                <?php if($post_image = $post->getImage()): ?>
+		                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$post_image; ?>" alt="Post Image" />
+		                <?php endif; ?>
+		                </div>
+		                <div class="post-title grid-full no-gutter">
+			                <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+			            </div>
+		            </div>
+		        <?php if ($i%2==0 || $i==$postCount): ?>
+		        </div>
+		        <?php endif; ?>
+	        <?php endforeach; ?>
+	        </div>
+	    </div>
+	    <script type="text/javascript">
+	    //<![CDATA[
+	        jQuery(function($) {
+	            var owlLatestPost = $('#latest-post-slider');
+	            owlLatestPost.owlCarousel({
+	                lazyLoad: true,
+	                responsive: true,
+	                singleItem: true,
+	                responsiveRefreshRate: 50,
+	                autoPlay: true,
+	                stopOnHover: true,
+	                rewindNav: true,
+	                rewindSpeed: 600,
+	                pagination: false,
+	                navigation: true,
+	                navigationText: ["<span class='fa fa-angle-left'></span>", "<span class='fa fa-angle-right'></span>"]
+	            });
+	        });
+	    //]]>
+	    </script>
+    </div>    
+</div>
+<?php endif; ?>

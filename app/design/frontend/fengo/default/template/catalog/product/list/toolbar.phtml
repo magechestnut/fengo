@@ -1,0 +1,127 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php if($this->getCollection()->getSize()): ?>
+<div class="toolbar clearfix">
+
+    <div class="toolbar-upside">
+        <div class="sort-by toolbar-item grid12-6-below-960 grid-full-below-768">
+            <label><?php echo $this->__('Sort By') ?>:</label>
+            <div class="select-box">
+                <select onchange="setLocation(this.value)">
+                <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+                    <option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+                        <?php echo $this->__($_order) ?>
+                    </option>
+                <?php endforeach; ?>
+                </select>
+                <div class="selected-value">&nbsp;</div>
+            </div>
+            <?php if($this->getCurrentDirection() == 'desc'): ?>
+                <a href="<?php echo $this->getOrderUrl(null, 'asc') ?>" title="<?php echo $this->__('Set Ascending Direction') ?>" class="fa fa-long-arrow-down"></a>
+            <?php else: ?>
+                <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Set Descending Direction') ?>" class="fa fa-long-arrow-up"></a>
+            <?php endif; ?>
+        </div>
+
+        <p class="total-count toolbar-item">
+            <?php if($this->getLastPageNum()>1): ?>
+                <?php echo $this->__('Items %s to %s of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
+            <?php else: ?>
+                <?php echo $this->__('%s Item(s)', $this->getTotalNum()) ?>
+            <?php endif; ?>
+        </p>
+
+        <div class="limiter toolbar-item left-padding grid12-6-below-768">
+            <label><?php echo $this->__('Show') ?>:</label>
+            <div class="select-box">
+                <select onchange="setLocation(this.value)">
+                <?php foreach ($this->getAvailableLimit() as  $_key=>$_limit): ?>
+                    <option value="<?php echo $this->getLimitUrl($_key) ?>"<?php if($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>>
+                        <?php echo $_limit ?>
+                    </option>
+                <?php endforeach; ?>
+                </select>
+                <div class="selected-value">&nbsp;</div>
+            </div>
+        </div>
+
+        <?php $compareHelper = $this->helper('catalog/product_compare'); ?>
+        <div class="toolbar-item-right no-left-gutter toolbar-compare-link hide-below-768 ">
+            <button type="button" class="button btn-compare" onclick="setLocation('<?php echo $compareHelper->getListUrl(); ?>')" ><span><span><?php echo $this->__('Compare'); ?></span></span></button>
+        </div>
+
+        <?php if( $this->isEnabledViewSwitcher() ): ?>
+        <p class="view-mode toolbar-item-right right-padding no-gutter grid12-4-below-960 grid12-6-below-768">
+            <?php $_modes = $this->getModes(); ?>
+            <?php if($_modes && count($_modes)>1): ?>
+            <label><?php echo $this->__('View as') ?>:</label>
+            <?php foreach ($this->getModes() as $_code=>$_label): ?>
+                <?php $_mode = ($_code == 'grid') ? 'large' : 'list'; ?>
+                <?php if($this->isModeActive($_code)): ?>
+                    <strong title="<?php echo $_label ?>" class="<?php echo strtolower($_code); ?>"><i class="fa fa-th-<?php echo $_mode; ?>"></i></strong>
+                <?php else: ?>
+                    <a href="<?php echo $this->getModeUrl($_code) ?>" title="<?php echo $_label ?>" class="<?php echo strtolower($_code); ?>"><i class="fa fa-th-<?php echo $_mode; ?>"></i></a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </p>
+        <?php endif; ?>
+
+        <div class="toolbar-item-right no-left-gutter toolbar-compare-link show-below-768 grid12-4-below-768">
+            <button type="button" class="button btn-compare" onclick="setLocation('<?php echo $compareHelper->getListUrl(); ?>')" ><span><span><?php echo $this->__('Compare'); ?></span></span></button>
+        </div>
+
+        <div class="pager toolbar-item grid-full-below-768">
+            <?php echo $this->getPagerHtml() ?>
+        </div>
+    </div>
+    <div class="toolbar-downside">
+        <div class="limiter grid12-4">
+            <label><?php echo $this->__('Show') ?>:</label>
+            <div class="select-box">
+                <select onchange="setLocation(this.value)">
+                <?php foreach ($this->getAvailableLimit() as  $_key=>$_limit): ?>
+                    <option value="<?php echo $this->getLimitUrl($_key) ?>"<?php if($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>>
+                        <?php echo $_limit ?>
+                    </option>
+                <?php endforeach; ?>
+                </select>
+                <div class="selected-value">&nbsp;</div>
+            </div>
+        </div>
+
+        <p class="total-count grid12-4 grid12-6-below-960 grid12-8-below-768">
+            <?php if($this->getLastPageNum()>1): ?>
+                <?php echo $this->__('Items %s to %s of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
+            <?php else: ?>
+                <?php echo $this->__('%s Item(s)', $this->getTotalNum()) ?>
+            <?php endif; ?>
+        </p>
+
+        <div class="pager grid12-8 grid-full-below-768">
+            <?php echo $this->getPagerHtml() ?>
+        </div>
+    </div>
+</div>
+<?php endif ?>
+<script type="text/javascript">
+//<![CDATA[
+jQuery(function($) {
+    $("select").each(function() {
+        var str = "";
+        str = $(this).find(":selected").text();
+        $(this).next(".selected-value").text(str);
+    });
+    $("select").change(function() {
+        var str = "";
+        str = $(this).find(":selected").text();
+        $(this).next(".selected-value").text(str);
+    });
+});
+//]]>
+</script>

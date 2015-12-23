@@ -1,0 +1,24 @@
+<?php 
+	$product = $this->getProduct();
+	$final = $product->getFinalPrice();
+	$regular = $product->getPrice();
+	$productType = $product->getOrigTypeId();
+	$decimals = ($product->getDecimals()) ? $product->getDecimals() : 0;
+	$helper = $this->helper('chestnut_products');
+?>
+<div class="price-box">
+<?php if (($productType == 'bundle') || ($productType == 'grouped') || $product->getMsrp()) : ?>
+	<a href="<?php echo $product->getProductUrl();?>"><span class="price"><?php echo $this->__('View');?></span></a>
+<?php elseif ($final == $regular): ?>
+	<span class="regular-price">
+		<span class="price"><?php echo $helper->getFormattedPriceWithSymbol($final, $decimals); ?></span>
+	</span>
+<?php else: ?>
+    <p class="old-price">
+        <span class="price"><?php echo $helper->getFormattedPriceWithSymbol($regular, $decimals); ?></span>
+    </p>
+    <p class="special-price">
+        <span class="price"><?php echo $helper->getFormattedPriceWithSymbol($final, $decimals); ?></span>
+    </p>
+<?php endif; ?>
+</div>

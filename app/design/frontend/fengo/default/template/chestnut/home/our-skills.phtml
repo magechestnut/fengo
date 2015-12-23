@@ -1,0 +1,26 @@
+<?php 
+	$data = $this->getData();
+	$blockTitle = $this->getBlockTitle();
+	$blockTitle = ($blockTitle) ? $blockTitle : $this->__('Our Skills');
+?>
+<div class="our-skills cms-block">
+	<h3 class="our-skills-title cms-block-title"><?php echo strtoupper($blockTitle); ?></h3>
+	<div class="our-skills-content cms-block-content">
+		<?php
+		foreach ($data as $key => $datus) :
+			$position = strpos($key, 'Data');
+			if (!$position) {
+				continue;
+			}
+			$item = substr($key, 0, $position);
+		?>
+		<div class="skills-chart skills-chart-<?php echo str_replace(array('/', '_'), array('-', '-'), $item); ?>">
+			<div class="chart chart-<?php echo str_replace(array('/', '_'), array('-', '-'), $item); ?>" style="width:<?php echo $datus; ?>%;">
+				<div class="skills-item"><?php echo strtoupper(str_replace('_', ' ', $item)); ?></div>
+			</div>
+			<div class="right-angle"></div>
+			<div class="skills-percent"><?php echo $datus . '%'; ?></div>
+		</div>
+		<?php endforeach; ?>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<?php $testimonial = $this->getTestimonial(); ?>
+<?php $testimonialStyle = ($this->getStyle()) ? $this->getStyle() : 'style1'; ?>
+<?php if ($testimonial->getSize()): ?>
+<div class="customer-testimonials <?php echo $testimonialStyle; ?> clearfix owlcarousel-slider singleItem navigation">
+	<?php foreach ($testimonial as $obj):?>
+		<?php if($obj->getStatus()==1): ?>
+		<div class="testimonial-wrapper clearfix">
+			<?php if(($obj->getAvatarName() != '') && ($testimonialStyle != 'style2')): ?>
+			<div class="testimonial-avatar">
+                <?php $avatarLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'chestnut/testimonial/avatar/'.$obj->getAvatarName(); ?>
+                <img src="<?php echo $avatarLink ?>" alt="<?php echo $obj->getName();?>" height="120" width="120" />
+            </div>
+        	<?php endif; ?>
+			<div class="customer-testimonial-content <?php if($obj->getAvatarName() == ''): ?>without-avatar<?php endif; ?>">
+				<?php if(($obj->getAvatarName() == '') || ($testimonialStyle == 'style2')): ?>
+				<div class="testimonial-title">
+	                <h3><?php echo $this->__('What Clients Say?'); ?></h3>
+	            </div>
+	        	<?php endif; ?>
+				<div class="testimonial-content">
+					<?php if ($obj->getTitle() != '') : ?>
+						<div class="testimonial-content-title"><?php echo $obj->getTitle();?></div>
+					<?php endif; ?>
+					<?php echo $obj->getTestimonial();?>
+				</div>
+				<div class="testimonial-source">
+					<span class="testimonial-author"><?php echo $obj->getName(); ?></span>
+					<span class="testimonial-date">
+						<?php echo date('F d, Y', Mage::getModel('core/date')->gmtTimestamp($obj->getCreatedTime())); ?>
+					</span>
+				</div>
+			</div>
+		</div>
+		<?php endif ?>
+	<?php endforeach;?>
+</div>
+<?php endif ?>

@@ -1,0 +1,72 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="contact-form grid12-8 no-left-gutter grid-full-below-768">
+    <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+        <div class="fieldset">
+            <h2><?php echo Mage::helper('contacts')->__('Contact Information') ?></h2>
+            <ul class="form-list">
+                <li class="fields grid12-6 no-left-gutter grid-full-below-960">
+                    <div class="field">
+                        <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
+                        <div class="input-box">
+                            <input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
+                        <div class="input-box">
+                            <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+                        <div class="input-box">
+                            <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+                        </div>
+                    </div>
+                    <p class="hide-below-960">Your emailaddress will not published. Reguired fields are marked<span class="required"><?php echo Mage::helper('contacts')->__('*') ?></span></p>
+                </li>
+                <li class="fields grid12-6 no-right-gutter grid-full-below-960">
+                    <label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Comment') ?></label>
+                    <div class="input-box">
+                        <textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                    </div>
+                    <p class="show-below-960">Your emailaddress will not published. Reguired fields are marked<span class="required"><?php echo Mage::helper('contacts')->__('*') ?></span></p>
+                    <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+                    <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm');
+
+    jQuery(function($) {
+        $('.contact-form input[type="text"], .contact-form textarea').each(function() {
+            var $input = $(this);
+            if ($input.val()) {
+                var $label = $("label[for='" + $input.attr('id') + "']");
+                $label.hide();
+            }
+            $input.focus(function() {
+                var $label = $("label[for='" + $(this).attr('id') + "']");
+                $label.hide();
+            });
+            $input.blur(function() {
+                var $label = $("label[for='" + $(this).attr('id') + "']");
+                if ($(this).val() == '') {
+                    $label.show();
+                }
+            });
+        });
+    });
+//]]>
+</script>

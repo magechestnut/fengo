@@ -1,0 +1,12 @@
+.upload-avatar label { float: none; position: static !important; }
+.upload-avatar .btn_avatar { height:30px; width:90px; margin: 0 0 6px 6px; display: inline-block; vertical-align: bottom; padding: 0; }
+.upload-avatar button.btn_avatar.hover > span {color:#444;background-color: #fff;}
+.upload-avatar .avatar-photo { margin-bottom:6px; display:inline-block; vertical-align: bottom; }
+.upload-avatar p {color:#666;}
+.upload-avatar .no-transition {
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	-o-transition: none !important;
+	-ms-transition: none !important;
+	transition: none !important;
+}

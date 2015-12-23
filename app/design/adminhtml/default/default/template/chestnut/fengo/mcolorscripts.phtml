@@ -1,0 +1,21 @@
+<?php
+/*
+  mColorPicker
+  Version: 1.0 r39
+  
+  Copyright (c) 2010 Meta100 LLC.
+  http://www.meta100.com/
+  
+  Licensed under the MIT license 
+  http://www.opensource.org/licenses/mit-license.php 
+*/
+?>
+<script type="text/javascript">
+	jQuery.fn.mColorPicker.init.replace = false;
+	jQuery.fn.mColorPicker.init.showLogo = false;
+	jQuery.fn.mColorPicker.defaults.imageFolder = '<?php echo $this->getJsUrl('chestnut/jquery/plugins/mcolorpicker/images/'); ?>';
+
+	jQuery(function($){
+		$('input[id$="_color"]:not([id^="vadmin"])').attr("data-hex", true).width("250px").mColorPicker();
+	});
+</script>

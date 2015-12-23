@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Chestnut_Brands>
+            <version>1.0.0</version>
+        </Chestnut_Brands>
+    </modules>
+    <global>
+        <blocks>
+            <chestnut_brands>
+                <class>Chestnut_Brands_Block</class>
+            </chestnut_brands>
+        </blocks>
+        <helpers>
+            <chestnut_brands>
+                <class>Chestnut_Brands_Helper</class>
+            </chestnut_brands>
+        </helpers>
+    </global>
+	<default>
+		<chestnut_brands>
+			<general>
+                <enable>1</enable>
+				<attr_id>manufacturer</attr_id>
+				<image_extension>png</image_extension>
+			</general>
+            <slider>
+                <enable_slider_home>1</enable_slider_home>
+                <all>1</all>
+            </slider>
+		</chestnut_brands>
+	</default>
+</config>

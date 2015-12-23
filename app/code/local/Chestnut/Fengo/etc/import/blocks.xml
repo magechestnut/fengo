@@ -1,0 +1,92 @@
+<root>
+   <blocks>
+      <cms_block>
+         <title>Menu Block</title>
+         <identifier>chestnut_menu_3_1</identifier>
+         <content><![CDATA[<img src="{{media url="wysiwyg/chestnut/fengo/menu/menu-ad-1.jpg"}}" alt="" />]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Menu Block 2</title>
+         <identifier>chestnut_menu_3_2</identifier>
+         <content><![CDATA[<img src="{{media url="wysiwyg/chestnut/fengo/menu/menu-ad-2-1.jpg"}}" alt="" /><img src="{{media url="wysiwyg/chestnut/fengo/menu/menu-ad-2-2.jpg"}}" alt="" /><img src="{{media url="wysiwyg/chestnut/fengo/menu/menu-ad-2-3.jpg"}}" alt="" />]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Category Banner of Fashion</title>
+         <identifier>category_banner_3</identifier>
+         <content><![CDATA[<div class="owlcarousel-slider singleItem autoPlay navigation bottom-right-nav c-ttu" style="margin-bottom: 30px;display:none;">
+    <div class="item"><img src="{{media url="wysiwyg/chestnut/fengo/category/1.jpg"}}" alt="" />
+        <div class="c-banner-img-text c-fcf">
+            <div class="c-ffmeeb c-fs84">Women</div>
+            <div class="c-ffrob c-fs40">Check your autumn Style</div>
+            <div class="c-ffcob c-fs13">Vivamus lacinia urna lorem, eget laoreet mauris lobortis quis. Aliquam<br />Aliquet nec tempor a, dapibus vitae nunc. Maecenas vitae purus<br />sem quis, varius tortor.</div>
+        </div>
+    </div>
+    <div class="item"><img src="{{media url="wysiwyg/chestnut/fengo/category/2.jpg"}}" alt="" />
+        <div class="c-banner-img-text dark-grey">
+            <div class="c-ffmeeb c-fs84 c-fc34">Men</div>
+            <div class="c-ffrob c-fs40 c-fc40">Choies autumn new</div>
+            <div class="c-ffcob c-fs13 c-fc35">Nam vel nisl eget purus convallis vulputate. Phasellus augue arcu <br />consectetur malesuada bibendum ut, laoreet in libero. <br />Etiam a facilisis sapien,Curabitur dolor.</div>
+        </div>
+    </div>
+    <div class="item"><img src="{{media url="wysiwyg/chestnut/fengo/category/3.jpg"}}" alt="" />
+        <div class="c-banner-img-text c-fc34  dark-grey">
+            <div class="c-ffmeeb c-fs84">Girls</div>
+            <div class="c-ffrob c-fs40">20% off kids outerwear</div>
+            <div class="c-ffcob c-fs13">Curabitur sed tincidunt justo. Etiam cursus molestie urna in <br />elementum. Donec quis cursus enim. Etiam tellus laoreet, <br />euismod ipsum vel, euismod nibh.</div>
+        </div>
+    </div>
+    <div class="item"><img src="{{media url="wysiwyg/chestnut/fengo/category/4.jpg"}}" alt="" />
+        <div class="c-banner-img-text c-fcf">
+            <div class="c-ffmeeb c-fs84">Boys</div>
+            <div class="c-ffrob c-fs40">Fall For Warm Knits</div>
+            <div class="c-ffcob c-fs13">Nam lobortis, neque interdum condimentum volutpat, enim velit tempus <br />justo, ut mattis eros est id lorem. In iaculis tortor ac nibh <br />elementum. Mauris posuere dapibus libero non mollis.</div>
+        </div>
+    </div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Blog Sidebar Video Block</title>
+         <identifier>c_blog_sidebar_video_block</identifier>
+         <content><![CDATA[
+<div class="block block-blog-video">
+    <div class="block-title"><strong><span>Latest Video</span></strong></div>
+    <div class="block-content"><iframe src="http://www.youtube.com/embed/I_ClNxSST4M"></iframe></div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Category Sidebar Banner</title>
+         <identifier>category_sidebar_banner</identifier>
+         <content><![CDATA[<div class="category-banner-sidebar">
+    <div class="owlcarousel-slider singleItem navigation bottom-right-nav">
+        <div class="item"><img src="{{media url="wysiwyg/chestnut/fengo/category/category_banner_1.png"}}" alt="" />
+            <div class="item-text">
+                <div class="c-ffcob c-fs16 c-fc5f c-ttu">In The</div>
+                <div class="c-ffmeeb c-fs50 c-fcf c-ttu" style="line-height: 42px;">Total</div>
+                <div class="c-ffmeeb c-fs50 c-fcf c-ttu" style="line-height: 42px;">Texture</div>
+                <div class="c-ffcob c-fs23 c-fc40 c-ttu">Issue</div>
+            </div>
+        </div>
+        <div class="item"><img src="{{media url="wysiwyg/chestnut/fengo/category/category_banner_2.png"}}" alt="" />
+            <div class="item-text">
+                <div class="c-ffcob c-fs20 c-fc3d c-ttu">The Edit</div>
+                <div class="c-ffmeeb c-fs45 c-fcf c-ttu" style="line-height: 38px;">Modern</div>
+                <div class="c-ffmeeb c-fs45 c-fcf c-ttu" style="margin-left: 10px; line-height: 38px;">Classics</div>
+                <div class="c-ffrob c-fs19 c-fc3d c-ttu" style="line-height: 19px;">All The Trends You Need</div>
+                <div class="c-ffrob c-fs19 c-fc3d c-ttu" style="line-height: 19px;">This Season</div>
+            </div>
+        </div>
+    </div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+   </blocks>
+</root>

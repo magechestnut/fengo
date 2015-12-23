@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <chestnut_optionswatch translate="label">
+            <label>Custom Option Swatch</label>
+            <tab>chestnut</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>  
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                    </fields>
+                </general>
+                <configuration translate="label">
+                    <label>Swatch Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>  
+					<fields>
+						<swatch_images translate="label comment">
+							<label>Swatch Images</label>
+							<frontend_type>textarea</frontend_type>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment><![CDATA[
+								<p>Format: <em>[option label]</em> : <em>[option value]</em> = <em>[swatch image]</em></p>
+								<p>Example:</p>
+								<p>
+								Size : Small = size-small.png<br/>
+								Size : Medium = size-medium.png<br/>
+								Size : Large = size-large.png<br/>
+								Color : Red = color-red.png<br/>
+								Color : Green = color-green.png<br/>
+								Color : Blue = color-blue.png<br/>
+								Color : Yellow = color-yellow.png<br/>
+								</p>
+								<p>Swatch images should be uploaded in <strong>media/swatches/</strong></p>
+								]]></comment>
+						</swatch_images>
+                    </fields>
+                </configuration>
+			</groups>
+        </chestnut_optionswatch>
+    </sections>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <catalog_product_view translate="label">
+		<reference name="head">
+			<action method="addCss" ifconfig="chestnut_optionswatch/general/enable"><stylesheet>css/chestnut/optionswatch/optionswatch.css</stylesheet></action>
+		</reference>
+		<reference name="product.info.options.wrapper">
+			<block type="chestnut_optionswatch/optionswatch" />
+		</reference>
+	</catalog_product_view>
+
+</layout>

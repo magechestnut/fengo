@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+    
+    <default>        
+        <reference name="head">
+            <action method="addJs" ifconfig="egnewsletter/fields/show_dob"><script>elegento/prototype/calendarview.js</script></action>
+            <action method="addItem" ifconfig="egnewsletter/fields/show_dob"><type>skin_css</type><name>css/elegento/newsletter/calendarview.css</name><params/></action>
+            <action method="addItem" ifconfig="egnewsletter/popup/enabled"><type>skin_css</type><name>css/elegento/newsletter/newsletter.css</name><params/></action>
+        </reference>
+
+        <reference name="root">
+            <block type="egnewsletter/popup" name="egnewsletter_popup" template="elegento/newsletter/popup.phtml"/>
+            <block type="egnewsletter/popup" name="egnewsletter" template="elegento/newsletter/newsletter.phtml"/>
+        </reference>
+
+        <reference name="before_body_end">
+            <action method="append" ifconfig="egnewsletter/popup/enabled"><block>egnewsletter_popup</block></action>
+        </reference>
+    </default>
+
+</layout>

@@ -1,0 +1,30 @@
+/*
+ * Internet Explorer: less than or equal 8
+ */
+
+#root-wrapper {width:1750px;}
+
+img {max-width: none !important;}
+
+.header #chestnut-mobile {display:none !important;}
+
+.fengo-home .product-list-slider .details-section {position: absolute;}
+.fengo-home .product-list-slider .details-section div,
+.fengo-home .product-list-slider .details-section a {filter:inherit;}
+
+.hover-section div {filter:inherit;}
+
+.home-products-grid .actions div,
+.home-products-grid .add-to-links div {filter:inherit;}
+
+.fengo-home .product-list-slider .details-section div,
+.fengo-home .product-list-slider .details-section a {filter:inherit;}
+
+.fengo-home .style1 .actions div,
+.fengo-home .style1 .add-to-links div {filter:inherit;}
+
+.fengo-home .style2 .actions div,
+.fengo-home .style2 .add-to-links div {filter:inherit;}
+
+.fengo-home .style3 .actions-section {position: absolute;}
+.fengo-home .style3 .actions-section div {filter:inherit;}

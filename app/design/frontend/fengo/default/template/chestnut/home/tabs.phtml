@@ -1,0 +1,57 @@
+<?php
+/**
+ *
+ * Home page product list tabs
+ *
+ */
+?>
+
+<?php 
+
+    $helper = $this->helper('chestnut_products');
+
+    if ($helper->getConfig('new_arrival/enable'))
+        $this->addTab('new_arrival', $helper->getConfig('new_arrival/title'), 'chestnut_products/list_newarrival', 'chestnut/home/list.phtml');
+
+    if ($helper->getConfig('featured/enable'))
+        $this->addTab('featured', $helper->getConfig('featured/title'), 'chestnut_products/list_featured', 'chestnut/home/list.phtml');
+
+    if ($helper->getConfig('special/enable'))
+        $this->addTab('special', $helper->getConfig('special/title'), 'chestnut_products/list_special', 'chestnut/home/list.phtml');
+
+    if ($helper->getConfig('bestsellers/enable'))
+        $this->addTab('bestsellers', $helper->getConfig('bestsellers/title'), 'chestnut_products/list_bestsellers', 'chestnut/home/list.phtml');
+
+    if ($helper->getConfig('most_viewed/enable'))
+        $this->addTab('most_viewed', $helper->getConfig('most_viewed/title'), 'chestnut_products/list_mostviewed', 'chestnut/home/list.phtml');
+
+?>
+
+<?php 
+    $_tabs = '<div class="nav-tabs-container"><ul id="tabs" class="nav nav-tabs" data-tabs="tabs">';
+    $_panes = '<div id="tab-content" class="tab-content">';
+    $_isFirst = true;
+?>
+<?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php
+    if ($tmpBlock = $this->getChildHtml($_tab['alias'])) {
+        $_first = ($_isFirst) ? ' active' : '';
+        $_tabs .= '<li class="' . $_first . '"><a href="#' . $_tab['alias'] . '" data-toggle="tab">' . $_tab['title'] . '</a></li>';
+
+        $_panes .= '<div class="tab-pane clearfix' . $_first . '" id="' . $_tab['alias'] . '">';
+        $_panes .= '<div class="panel">' . $tmpBlock . '</div>';
+        $_panes .= '</div>';
+        $_isFirst = false;
+    }
+    ?>
+<?php endforeach; ?>
+<?php 
+    $_tabs .= '</ul></div>';
+    $_panes .= '</div>';
+?>
+
+<?php if ($_panes != ''): ?>
+    <div class="tabbable">
+        <?php echo $_tabs . $_panes; ?>
+    </div>
+<?php endif; ?>

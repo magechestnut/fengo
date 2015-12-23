@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="0.1.0">    
+
+    <cms_index_index>
+
+        <reference name="root">
+            <block type="slideshow/slideshow" name="slideshow" as="slideshow" template="chestnut/slideshow/slideshow.phtml">
+            </block>
+        </reference>
+
+        <reference name="main_before_top">
+            <action method="insert" ifconfig="slideshow/general/enable">
+                <block>slideshow</block>
+            </action>
+        </reference>
+        
+    </cms_index_index>
+
+</layout>

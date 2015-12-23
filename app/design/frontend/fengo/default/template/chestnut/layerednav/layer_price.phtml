@@ -1,0 +1,57 @@
+<?php 
+    $helper = $this->helper('chestnut_layerednav');
+    $queryKey = $this->_filter->getRequestVar();
+
+    list($min, $max) = $this->_filter->getMinMaxPriceInt(); 
+    list($from, $to) = explode(',', $this->_filter->getActiveState()); 
+    
+    $from = floor(max($from, $min));
+    $to = ($to) ? ceil(min($to, $max)) : $max;
+    
+    if ($to < 1 && $from < 1) {
+        $to = $max;
+    }
+?>
+<ol>
+    <li>
+        <?php if ($to != $from) :?> 
+        <div id="chestnut_layerednav_price_slider" class="price_slider">
+        </div>
+        <?php endif;?>
+
+        <?php if ($to != $from) :?>
+            <span><?php echo $this->__('from'); ?></span>
+            <input class="input-text" type="text" maxlength="12" size="4" id="price_from" value="<?php echo $this->getSymbol() . $from?>" onclick="if(this.value==this.name) this.value='';"  name="<?php echo $this->__('From')?>"/>
+            <span><?php echo $this->__('to'); ?></span>
+            <input class="input-text" type="text" maxlength="12" size="4" id="price_to" value="<?php echo $this->getSymbol() . $to?>" onclick="if(this.value==this.name) this.value='';" name="<?php echo $this->__('To')?>"/> <br />
+            <button type="button" class="button" id="price_button_ok"><span><span><?php echo $this->__('OK')?></span></span></button>
+            <?php if ($helper->getClearUrl($queryKey)): ?>
+                <button type="button" class="button chestnut_layerednav_clear"><span><span><?php echo $this->__('CLEAR')?></span></span></button>
+            <?php endif ?>
+        <?php else:?>
+            <?php echo $this->__('Value:')?> 
+            <?php echo $this->getSymbol()?><span id="price_value"><?php echo $from?></span>
+        <?php endif;?> 
+    </li>
+</ol>
+
+<script type="text/javascript">    
+    var priceQueryKey = "<?php echo $queryKey; ?>";
+
+    jQuery(function($) {
+        $("#chestnut_layerednav_price_slider").slider({
+            range: true,
+            min: <?php echo $min; ?>,
+            max: <?php echo $max; ?>,
+            values: [ <?php echo $from; ?>, <?php echo $to; ?> ],
+            slide: function( event, ui ) {
+                $("#price_from").val( "<?php echo $this->getSymbol() ?>" + ui.values[ 0 ]);
+                $("#price_to").val( "<?php echo $this->getSymbol() ?>" + ui.values[ 1 ]);
+            },
+            change: function( event, ui ) {                
+                chestnut_layerednav_add_params(priceQueryKey, ui.values[ 0 ] + ',' + ui.values[ 1 ], true);
+                chestnut_layerednav_send_request();
+            }
+        });
+    });
+</script>

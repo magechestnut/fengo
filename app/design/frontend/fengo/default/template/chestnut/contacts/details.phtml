@@ -1,0 +1,70 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php
+    $store = Mage::app()->getStore()->getId();
+    $theme = $this->helper('fengo');
+    $phone = $theme->getSetting('contactus/phone', $store);
+    $phone2 = $theme->getSetting('contactus/phone_two', $store);
+    $mobile = $theme->getSetting('contactus/mobile', $store);
+    $mobile2 = $theme->getSetting('contactus/mobile_two', $store);
+    $mail = $theme->getSetting('contactus/mail', $store);
+    $mail2 = $theme->getSetting('contactus/mail_two', $store);
+    $skype = $theme->getSetting('contactus/skype', $store);
+    $skype2 = $theme->getSetting('contactus/skype_two', $store);
+?>
+<div class="block block-contacts-details grid12-4 no-right-gutter grid-full-below-768">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Contact Details') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <div class="details phone clearfix">
+            <div class="phone-header details-header">
+                <?php echo $this->__('Phone:') ?>
+            </div>
+            <div class="phone-info">
+                <p><?php echo $phone ?></p>
+                <?php if($phone2): ?>
+                <p><?php echo $phone2 ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="details mobile clearfix">
+            <div class="mobile-header details-header">
+                <?php echo $this->__('Mobile:') ?>
+            </div>
+            <div class="mobile-info">
+                <p><?php echo $mobile ?></p>
+                <?php if($mobile2): ?>
+                <p><?php echo $mobile2 ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="details mail clearfix">
+            <div class="mail-header details-header">
+                <?php echo $this->__('E-mail:') ?>
+            </div>
+            <div class="mail-info">
+                <p><?php echo $mail ?></p>
+                <?php if($mail2): ?>
+                <p><?php echo $mail2 ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="details skype clearfix">
+            <div class="skype-header details-header">
+                <?php echo $this->__('Skype:') ?>
+            </div>
+            <div class="skype-info">
+                <p><?php echo $skype ?></p>
+                <?php if($skype2): ?>
+                <p><?php echo $skype2 ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

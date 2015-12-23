@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+
+<config>
+    <sections>
+        <chestnut_cloudzoom translate="label" module="chestnut_cloudzoom">
+            <label>Cloudzoom</label>
+            <tab>chestnut</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable ClouldZoom</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                    </fields>
+                </general>
+                <zoom_image translate="label">
+                    <label>Zoom Image</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <zoom_width translate="label">
+                            <label>Width</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number</validate>
+                            <comment>The width of the zoom window in pixel. If not set, the width will be set as default value.</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoom_width>
+                        <zoom_height translate="label">
+                            <label>Height</label>
+                            <validate>validate-number</validate>
+                            <comment>The height of the zoom window in pixel. If not set, the height will be set as default value.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoom_height>
+                        <zoom_type translate="label">
+                            <label>Zoom Type</label>
+                            <comment>Specifies Zooming Type.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>chestnut_cloudzoom/system_config_zoom_type</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoom_type>
+                        <position translate="label">
+                            <label>Position</label>
+                            <comment>Specifies the position of the zoom window relative to the small image.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>chestnut_cloudzoom/system_config_zoom_position</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <zoom_type>window</zoom_type>
+                            </depends>
+                        </position>
+                        <tint translate="label">
+                            <label>Enable Tint</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tint>
+                        <tint_color translate="label">
+                            <label>Tint Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <tint>1</tint>
+                            </depends>
+                        </tint_color>
+                        <tint_opacity translate="label">
+                            <label>Tint Opacity</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>chestnut_cloudzoom/system_config_zoom_tintopacity</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <tint>1</tint>
+                            </depends>
+                        </tint_opacity>
+                        <easing translate="label">
+                            <label>Enable Easing</label>
+                            <comment>This is setting for smooth move of zoomed image.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </easing>
+                    </fields>
+                </zoom_image>
+            </groups>
+        </chestnut_cloudzoom>
+    </sections>
+</config>

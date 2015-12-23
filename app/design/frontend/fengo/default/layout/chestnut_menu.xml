@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <default>
+
+        <reference name="head">
+            <!-- <action method="addJs"><script>chestnut/jquery/jquery-1.10.2.js</script></action>
+            <action method="addJs"><script>chestnut/jquery/plugins/jquery.easing.min.js</script></action>
+            <action method="addJs"><script>chestnut/jquery/plugins/jquery.accordion.min.js</script></action> -->
+            <action method="addItem" ifconfig="egmenu/general/enabled"><type>skin_css</type><name>css/chestnut/menu/menu.css</name><params/></action>
+        </reference>
+
+        <reference name="root">
+            <block type="egmenu/navigation" name="egmenu"></block>
+        </reference>
+        
+        <reference name="before_body_end">
+            <!--block type="core/template" name="egmenu_content" template="chestnut/menu/content.phtml"></block-->
+        </reference>
+        
+        <reference name="top.menu">
+            <action method="unsetChild" ifconfig="egmenu/general/enabled">
+                <name>catalog.topnav</name>
+            </action>
+            <action method="insert" ifconfig="egmenu/general/enabled">
+                <block>egmenu</block>
+            </action>
+        </reference>
+        
+    </default>
+    
+</layout>

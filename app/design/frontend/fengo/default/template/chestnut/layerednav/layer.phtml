@@ -1,0 +1,73 @@
+<?php
+    $helper = $this->helper('chestnut_layerednav');
+    $initData = $helper->getInitData();
+    $moduleEnabled = $helper->getConfig('general/enable');
+?>
+<?php if (!$helper->getConfig('general/show_categories')) : ?>
+    <div class="cl_all_categories">
+        <div class="cl_categories_title">
+            <?php echo $this->__('Categories'); ?>
+        </div>
+        <?php echo $this->getCategoryBlock(); ?>
+    </div>
+<?php endif; ?>
+
+<?php if ($this->canShowBlock()): ?>
+    <div class="block block-layered-nav">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Shop by') ?></span></strong>
+        </div>
+        <div class="block-content">
+            <?php echo $this->getStateHtml() ?>
+            <?php if ($this->canShowOptions()): ?>
+                <div class="chestnut_layerednav">
+                    <dl id="chestnut_layerednav_dl">
+                        <?php if ($initData[1] AND $helper->getNeedClearAll()): ?>
+                            <div class="actions chestnut_layerednav_clear_all" style="display:none;"><a class="chestnut_layerednav_clearall" href="<?php echo $this->htmlEscape($helper->getClearAllUrl($helper->getTargetUrl())) ?>"><?php echo $this->__('Clear All') ?></a></div>
+                        <?php endif ?>
+
+                        <?php $_filters = $this->getFilters() ?>
+                        <?php foreach ($_filters as $_filter): ?>
+                            <?php if ($_filter->getItemsCount()): ?>
+                                <dt class="chestnut_layerednav_dt">
+                                <?php if ($clearUrl = $helper->getClearUrl($_filter->getRequestVar())): ?>
+                                    <a id="<?php echo $_filter->getRequestVar() ?>-clear" href="<?php echo $this->htmlEscape($clearUrl) ?>" class="btn-remove chestnut_layerednav_clear" title="<?php echo $this->__('Remove This Item') ?>"><?php echo $this->__('Remove This Item') ?></a>
+                                <?php endif ?>
+                                <?php echo $this->__($_filter->getName()) . $this->__(' Filter') ?>
+                                </dt>
+                                <dd id="chestnut_layerednav_<?php echo $_filter->getRequestVar() ?>"><?php echo $_filter->getHtml(); ?></dd>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </dl>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="layerednav_loading" style="display:none"></div>
+    </div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    decorateDataList('chestnut_layerednav_dl');
+    var categoryUrl = "<?php echo $this->htmlEscape($initData[0]) ?>";
+    var categoryUrlParams = "<?php echo $this->htmlEscape($initData[1]) ?>";
+    var layerednavAjaxUrl = "<?php echo $this->htmlEscape($initData[2]) ?>";
+    chestnut_layerednav_init();
+    catalog_toolbar_init();
+
+    function winLoadEvent(func) {
+        var oldOnLoad = window.onload;
+        if (typeof window.onload != 'function') {
+            window.onload = func;
+        } else {
+            window.onload = function() {
+                oldOnLoad();
+                func();
+            }
+        }
+    }
+    
+    winLoadEvent(function(){
+        if (categoryUrlParams !== "")
+            chestnut_layerednav_send_request();
+    });
+</script>

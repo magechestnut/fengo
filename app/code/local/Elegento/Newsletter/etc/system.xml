@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <egnewsletter translate="label" module="egnewsletter">
+            <label>Newsletter Popup</label>
+            <tab>chestnut</tab>
+            <sort_order>700</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label comment">
+                    <label>General Setting</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>                    
+                    <fields>
+                        <egnl_description translate="label comment">
+                            <label>Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </egnl_description>
+                        <egnl_bg_image_show translate="label comment">
+                            <label>Where to Show Background Image</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>egnewsletter/system_config_source_dropdown_position</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </egnl_bg_image_show>
+                        <egnl_bg_image translate="label comment">
+                            <label>Background Image</label>
+                            <comment>Allowed file types: ICO, PNG, JPG, JPEG, GIF, APNG, SVG. Not all browsers support these formats.</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>fengo/system_config_source_file_image</backend_model>
+                            <base_url type="media">chestnut/file/image</base_url>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <egnl_bg_image_show separator=",">p,g,b</egnl_bg_image_show>
+                            </depends>
+                        </egnl_bg_image>
+                    </fields>
+                </general>
+                <fields translate="label comment">
+                    <label>Subscription Form Fields</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>                    
+                    <fields>
+                        <show_gender translate="label comment">
+                            <label>Show Gender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_gender>
+                        <show_prefix translate="label comment">
+                            <label>Show Prefix</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_prefix>
+                        <show_firstname translate="label comment">
+                            <label>Show Firstname</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_firstname>
+                        <show_lastname translate="label comment">
+                            <label>Show Lastname</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_lastname>
+                        <show_suffix translate="label comment">
+                            <label>Show Suffix</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_suffix>
+                        <show_dob translate="label comment">
+                            <label>Show Date of Birth</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_dob>
+                        <customer_override translate="label comment">
+                            <label>Override Customer Data</label>
+                            <comment><![CDATA[If set to Yes and a logged-in customer subscribes to the newsletter with his customer email address but provides data in the subscription form that differs from the cusomers account information, the module will save this information instead (only for the subscription). If set to No, the module will override the cusomers provided information with the information from the customers account (if provided).]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_override>
+                        <customer_fallback translate="label comment">
+                            <label>Fallback to Customer Data</label>
+                            <comment><![CDATA[If set to Yes and a logged-in customer subscribes to the newsletter with his customer email address and doesn't fill out all fields in the subscription form, the module will try to get the missing data from the customers account information.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_fallback>
+                    </fields>
+                </fields>
+            	<popup translate="label comment">
+            		<label>Popup Mode (Subscription Form Overlay)</label>
+            		<sort_order>20</sort_order>
+            		<show_in_default>1</show_in_default>
+            		<show_in_website>1</show_in_website>
+            		<show_in_store>1</show_in_store>            		
+            		<fields>
+            			<enabled translate="label comment">
+            				<label>Enable Popup</label>
+            				<comment><![CDATA[Selecting Yes will enable the popup mode for the current scope. The popup mode displays an overlay with the newsletter subscription form, which can be filled out or dismissed by the user.]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+            				<sort_order>1</sort_order>
+            				<show_in_default>1</show_in_default>
+            				<show_in_website>1</show_in_website>
+            				<show_in_store>1</show_in_store>
+            			</enabled>
+            			<visibility translate="label comment">
+            				<label>Visibility</label>
+            				<comment><![CDATA[Choose who should see the popup.]]></comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>Elegento_Newsletter_Model_System_Config_Source_Dropdown_Visibility</source_model>
+            				<sort_order>10</sort_order>
+            				<show_in_default>1</show_in_default>
+            				<show_in_website>1</show_in_website>
+            				<show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+            			</visibility>
+            			<show_already_subscribed translate="label comment">
+            				<label>Show if already subscribed</label>
+            				<comment><![CDATA[Selecting Yes will enable the popup mode even for logged-in users that have already subscribed to the newsletter. (default: No)]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+            				<sort_order>11</sort_order>
+            				<show_in_default>1</show_in_default>
+            				<show_in_website>1</show_in_website>
+            				<show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                                <visibility separator=",">0,1</visibility>
+                            </depends>
+            			</show_already_subscribed>
+                        <fadeout_duration translate="label comment">
+                            <label>Fadeout Time</label>
+                            <comment><![CDATA[Set the fadeout duration in milliseconds.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits required-entry</validate>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </fadeout_duration>
+                        <pop_width translate="label comment">
+                            <label>Popup Width</label>
+                            <comment><![CDATA[Set popup width in pixels.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits required-entry</validate>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </pop_width>
+                        <!-- <pop_height translate="label comment">
+                            <label>Popup Height</label>
+                            <comment><![CDATA[Set popup height in pixels.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>34</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits required-entry</validate>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </pop_height> -->
+                        <pop_expire translate="label comment">
+                            <label>Cookie Expiration</label>
+                            <comment><![CDATA[Set Cookie expiration time in minutes. When a user closes the popup or submits the form, it will not popup again for this period.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits</validate>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </pop_expire>
+            		</fields>
+            	</popup>
+            </groups>
+        </egnewsletter>
+    </sections>
+</config>

@@ -1,0 +1,8 @@
+.swatches-container .swatch-img,
+.swatches-container .swatch-span { vertical-align: middle; display: inline-block; margin:0 10px 20px 0; cursor: pointer; padding: 2px; min-width: 35px; height: 35px; border: 1px solid #ccc; }
+.swatches-container .swatch-img {}
+.swatches-container .swatch-img.current { border:2px solid #777; }
+.swatches-container .swatch-span { text-align: center; line-height: 28px; }
+.swatches-container .swatch-span.current { border:2px solid #777; }
+.product-options dd select {display: none; position: absolute; top: -9999px;}
+.product-options dd select:disabled {position: absolute; top:-9999px;}

@@ -1,0 +1,14 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $theme = $this->helper('fengo'); ?>
+<?php if ($_product->isAvailable()): ?>
+    <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
+<?php else: ?>
+    <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+<?php endif; ?>
+<?php if ($theme->getSetting('product_page/sku')) : ?>
+    <p class="product-code"><?php echo $this->__('Product Code:') ?> <span><?php echo $this->htmlEscape($_product->getSku()) ?></span></p>
+<?php endif; ?>
+<?php if ($attribute = $_product->getResource()->getAttribute('manufacturer')) : ?>
+    <p class="manufacturer"><?php echo $this->__('Brand:') ?> <span><?php echo $attribute ->getFrontend()->getValue($_product) ?></span></p>
+<?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>

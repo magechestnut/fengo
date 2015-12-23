@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <slideshow translate="label" module="slideshow">
+            <label>Slideshow</label>
+			<class>slideshow-section</class>
+            <tab>chestnut</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>9999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <general translate="label">
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable>
+						<effect translate="label">
+							<label>Transition Effect</label>
+							<comment>Leave empty to use simple horizontal slide animation.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>slideshow/system_config_source_effect</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</effect>
+						<timeout translate="label">
+							<label>Timeout</label>
+							<comment>Time (in milliseconds) between slide transitions. Enter "0" to disable automatic transition.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</timeout>
+						<speed translate="label">
+							<label>Transition Speed</label>
+							<comment>Duration (in milliseconds) of slide transition animation.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</speed>
+						<smooth_height translate="label">
+							<label>Smooth Height</label>
+							<comment>Enable, if your slides do not have the same height. It will allow height of the slideshow to animate smoothly.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>85</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</smooth_height>
+						<pause translate="label">
+							<label>Pause on Hover</label>
+							<comment>If enabled, when the slideshow is mouseovered then the automatic transition functionality will pause.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pause>
+						<loop translate="label">
+							<label>Loop</label>
+							<comment>If enabled, animation will loop.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</loop>
+					</fields>
+				</general>
+				<home translate="label">
+					<label>Slideshow on Home Page</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<blocks translate="label">
+							<label>Slides</label>
+							<comment>Enter comma separated list of static block identifiers.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</blocks>
+						<width translate="label">
+							<label>Width</label>
+							<comment>If set 'Fit to Container', then homepage slideshow width will be fitted to site container, .</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_type>select</frontend_type>
+							<source_model>slideshow/system_config_source_width</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</width>
+					</fields>
+				</home>
+			</groups>
+		</slideshow>
+	</sections>
+</config>

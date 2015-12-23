@@ -1,0 +1,55 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme Head
+ * 
+ */
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<?php 
+	$storeCode = Mage::app() -> getStore() -> getCode();
+	$this->addCss('css/chestnut/fengo/config/design_' . $storeCode . '.css');
+?>
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<!--[if lt IE 9]>
+<script type='text/javascript' src="<?php echo $this->helper('core/js')->getJsUrl('chestnut/html5shiv.js'); ?>"></script>
+<script type='text/javascript' src="<?php echo $this->helper('core/js')->getJsUrl('chestnut/css3-mediaqueries.js'); ?>"></script>
+<![endif]-->
+
+<?php
+	$fengo = $this->helper('fengo');
+	$amp = '&amp;';
+	$charSubset = '';
+	if ($subsets = $fengo->getDesign('font/primary_char_subset')) {
+		$charSubset = "{$amp}subset={$subsets}";
+	}
+
+	$fontWeight = '';
+	if ($weight = $fengo->getDesign('font/primary_font_weight')) {
+		$fontWeight = ':' . $weight;
+	}
+?>
+<?php if ($fengo->getDesign('font/primary_font_family_group') == 'google'): ?>
+	<link href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $fengo->getDesign('font/primary_font_family')); 
+		echo $fontWeight; echo $charSubset; ?>' rel='stylesheet' type='text/css' />
+<?php endif;?>

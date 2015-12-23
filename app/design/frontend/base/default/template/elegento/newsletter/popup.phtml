@@ -1,0 +1,151 @@
+<?php
+/**
+ * Newsletter Popup
+ *
+ * @category   Design
+ * @package    Elegento_Newsletter
+ * @author     Elegento Team
+ */
+?>
+<?php 
+    $helper = $this->helper('egnewsletter');
+    $fadeDuration = $this->getConfig('popup/fadeout_duration') / 1000; 
+    $store = Mage::app()->getStore()->getId();
+    $uploadDir = Mage::getModel('fengo/system_config_source_file_image')->getEGUploadDir();
+    $backgroundImage = $uploadDir . '/' . $helper->getConfig('general/egnl_bg_image', $store);
+    $bgWhere = $helper->getConfig('general/egnl_bg_image_show', $store);
+    $bgWhere = ($bgWhere == 'p') || ($bgWhere == 'b');
+    $description = $helper->getConfig('general/egnl_description', $store);
+    $description = ($description) ? $description : $this->__('Sign up to get exclusive offers from <br> our favorite brands and to be well up in the news.');
+    $popupWidth = $helper->getConfig('popup/pop_width', $store);
+    $popupWidth = ($popupWidth) ? $popupWidth : '750';
+?>
+<style type='text/css' scoped>
+.egnewsletter-popup-container .egnewsletter-frame {width: <?php echo $popupWidth . 'px';?>; }
+<?php if ($bgWhere && $helper->getConfig('general/egnl_bg_image', $store)) : ?>
+.egnewsletter-popup-container .egnewsletter-frame {background: url(<?php echo $backgroundImage;?>) center center no-repeat;}
+<?php endif; ?>
+</style>
+<div id="egnewsletter_popup_container" class="egnewsletter-popup-container">
+    <div class="egnewsletter-frame">
+        <a href="javascript:void(0);" class="egnewsletter-close" id="egnewsletter_close">
+            <span class="popup-close">&times;</span>
+        </a>
+        <div class="block block-subscribe">
+            <div class="block-title">
+                <h4 class="c-ttu c-fwn"><?php echo $this->__('Subscribe'); ?></h4>
+                <div class="horizontal-separator separator-4"></div>
+            </div>
+            <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="egnewsletter-popup">
+                <div class="block-content">
+                    <p class="newsletter-description eg-tac"><?php echo nl2br($description); ?></p>
+                    <ul class="form-list" style="list-style:none;">
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_gender')): ?>
+                        <li>
+                            <label for="gender"><?php echo $this->__('Gender') ?>:</label>
+                            <div class="input-box" style="width:auto;">
+                                <select name="gender" id="gender">
+                                    <option value=""><?php echo $this->__('Please select Gender') ?></option>
+                                    <?php echo $this->helper('egnewsletter')->getGenderOptionsHtml(); ?>
+                                </select>
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_prefix')): ?>
+                        <li>
+                            <label for="prefix"><?php echo $this->__('Prefix') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="prefix" id="prefix" placeholder="<?php echo $this->__('Your name prefix'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_firstname')): ?>
+                        <li>
+                            <label for="firstname"><?php echo $this->__('First Name') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="firstname" id="firstname" placeholder="<?php echo $this->__('Your first name'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_lastname')): ?>
+                        <li>
+                            <label for="lastname"><?php echo $this->__('Last Name') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="lastname" id="lastname" placeholder="<?php echo $this->__('Your last name'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_suffix')): ?>
+                        <li>
+                            <label for="suffix"><?php echo $this->__('Suffix') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="suffix" id="suffix" placeholder="<?php echo $this->__('Your name suffix'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_dob')): ?>
+                        <li>
+                            <label for="eg_dob"><?php echo $this->__('Date of Birth') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="dob" id="eg_dob" class="input-text" placeholder="mm/dd/yyyy" />
+                                <?php /*<img title="<?php echo $this->__('Select Date') ?>" id="eg_dob_picker" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'frontend/base/default/images/elegento/newsletter/datepicker.png'; ?>"  class="v-middle"/>*/?>
+                                <div id="eg_dob_calendar"></div>
+                            </div>
+                            <script type="text/javascript">
+                            //<![CDATA[
+                                // Calendar.setup({
+                                //     dateField: 'eg_dob',
+                                //     parentElement: 'eg_dob_calendar',
+                                //     triggerElement: 'eg_dob_picker'
+                                // });
+                                jQuery('#eg_dob').datepicker();
+                            //]]>
+                            </script>
+                        </li>
+                        <?php endif; ?>
+                        <li>
+                            <label for="email" class="required"><em>*</em><?php echo $this->__('Email') ?>:</label>
+                            <div class="input-box">
+                                <?php echo $this->getChildHtml('html_calendar') ?>
+                                <input type="text" name="email" id="email" placeholder="<?php echo $this->__('Your email address *'); ?>" class="input-text required-entry validate-email" />
+                            </div>
+                        </li>
+                        <li class="eg-tac">
+                            <input type="submit" value="<?php echo $this->__('Subscribe') ?>" title="<?php echo $this->__('Subscribe') ?>" class="button btn-subscribe" />
+                        </li>
+                    </ul>
+
+                    <div class="input-box">
+                        <input type="checkbox" class="disable-popup" id="disable_popup" />
+                        <label for="disable_popup" class="disable-popup"><?php echo $this->__("Don't show this popup again"); ?></label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    function egHideNewsletterModal() {
+        $('egnewsletter_popup_container').fade({ duration: <?php echo $fadeDuration; ?>, from: 1, to: 0 });
+
+        var url = "<?php echo $this->getHidePopupUrl(); ?>";
+        if ($('disable_popup').checked) {
+            url = "<?php echo $this->getDisablePopupUrl(); ?>";
+        }
+
+        new Ajax.Request(url, {method: "post"});
+    }
+    
+    var egNewsletterPopupForm = new VarienForm('egnewsletter-popup');
+    egNewsletterPopupForm.validator.options.onFormValidate = function(result, form){
+        if (result) {
+            egHideNewsletterModal();
+        }
+    };
+
+    Event.observe('egnewsletter_close', 'click', function(event) {
+        egHideNewsletterModal();
+    });
+//]]>
+</script>

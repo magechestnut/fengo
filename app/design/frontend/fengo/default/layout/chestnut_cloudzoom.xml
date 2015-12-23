@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<layout>    
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addJs" ifconfig="chestnut_cloudzoom/general/enable"><script>chestnut/jquery/plugins/jquery.elevatezoom.js</script></action>
+        </reference>
+
+        <reference name="product.info.media">
+            <action method="setTemplate" ifconfig="chestnut_cloudzoom/general/enable">
+                <template>chestnut/cloudzoom/product/view/media.phtml</template>
+            </action>
+        </reference>
+    </catalog_product_view>
+    
+    <review_product_list translate="label">
+        <reference name="head">
+            <action method="addJs" ifconfig="chestnut_cloudzoom/general/enable"><script>chestnut/jquery/plugins/jquery.elevatezoom.js</script></action>
+        </reference>
+
+        <reference name="product.info.media">
+            <action method="setTemplate" ifconfig="chestnut_cloudzoom/general/enable">
+                <template>chestnut/cloudzoom/product/view/media.phtml</template>
+            </action>
+        </reference>
+    </review_product_list>
+</layout>

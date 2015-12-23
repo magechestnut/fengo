@@ -1,0 +1,66 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php if(count($this->getStores())>1): ?>
+    <?php
+        $curStoreName = '';
+        $curStoreCode = '';
+        $html = array();
+        $html1 = array();
+        $html[] = '<ul class="dropdown-menu">';
+        $html1[] = '<ul class="dropdown-menu">';
+        foreach($this->getStores() as $_store)
+        {
+            $storeName = $this->__($this->escapeHtml($_store->getName()));
+            $storeId = $_store->getId();
+            $storeCode = $_store->getCode();
+            $css = 'style="background:url('. $this->getSkinUrl('images/flags/'. $storeCode .'.png') .') 0 50% no-repeat;"';
+
+            if($storeId == $this->getCurrentStoreId())
+            {
+                $curStoreName = $storeName;
+                $curStoreCode = $storeCode;
+                $html[] = '<li class="current"><a href="#"><span class="language-icon" '. $css . '>' . strtoupper($storeName). '</span></a><span class="fa fa-angle-up"></span></li>';
+                $html1[] = '<li class="current"><a href="#"><span class="language-icon" '. $css . '>' . strtoupper(substr($storeName, 0, 3)). '</span></a><span class="fa fa-angle-up"></span></li>';
+                break;
+            }
+        }
+        foreach($this->getStores() as $_store)
+        {
+            $storeName = $this->__($this->escapeHtml($_store->getName()));
+            $storeId = $_store->getId();
+            $storeCode = $_store->getCode();
+            $css = 'style="background:url('. $this->getSkinUrl('images/flags/'. $storeCode .'.png') .')  0 50% no-repeat;"';
+
+            if($storeId != $this->getCurrentStoreId())
+            {
+                $html[] = '<li><a href="'. $_store->getCurrentUrl() .'"><span class="language-icon" '. $css .'>'. strtoupper($storeName) .'</span></a></li>';
+                $html1[] = '<li><a href="'. $_store->getCurrentUrl() .'"><span class="language-icon" '. $css .'>'. strtoupper(substr($storeName, 0, 3)) .'</span></a></li>';
+            }
+        }
+        $html[] = '</ul>';
+        $html1[] = '</ul>';
+    ?>
+
+    <div class="dropdown lang-switcher">
+        <div class="dropdown-toggle">
+            <span class="value"><?php echo strtoupper($curStoreName); ?></span>
+            <span class="fa fa-angle-down"></span>
+            <span class="fa fa-angle-up"></span>
+        </div>
+        <?php echo implode('', $html); ?>
+    </div>
+
+    <div class="dropdown lang-switcher lang-switcher-1">
+        <div class="dropdown-toggle">
+            <span class="value"><?php echo strtoupper(substr($curStoreName, 0, 3)); ?></span>
+            <span class="fa fa-angle-down"></span>
+            <span class="fa fa-angle-up"></span>
+        </div>
+        <?php echo implode('', $html1); ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,8 @@
+<ol class="clearfix">
+<?php foreach ($this->getItems() as $_item): ?>
+    <li>
+    	<a href="#" id="<?php echo $this->getRequestVar() . '-' . $_item->getValueString() ?>" class="chestnut_layerednav_attribute <?php echo ($this->isSelected($_item)) ? 'chestnut_layerednav_attribute_selected' : ''; ?>"><?php echo $_item->getLabel(); ?>
+    	</a>
+    </li>
+<?php endforeach; ?>
+</ol>

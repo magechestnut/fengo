@@ -1,0 +1,30 @@
+<?php $posts = $this->getPostsByTag($this->getTagName()); ?>
+<?php $store = Mage::app()->getStore()->getId(); ?>
+<?php $postDateFormat = $this->helper('blog')->getConfig(Chestnut_Blog_Helper_Config::XML_BLOG_DATEFORMAT, $store); ?>
+<?php if ($posts->count() > 0): ?>
+<?php foreach ($posts as $post): ?>
+    <div class="postWrapper">
+        <?php if($banner_content = $post->getBannerContent()) : ?>
+        <div class="postBanner">
+            <?php echo $banner_content; ?>
+        </div>
+        <?php endif; ?>
+        <div class="postDetails clearfix">
+            <div class="postDate"><div><?php echo date($postDateFormat, strtotime($post->getCreatedTime())); ?></div></div>
+            <?php if ($this->getCommentsEnabled()): ?>
+            <div class="postComments">
+                <a href="<?php echo $post->getAddress(); ?>#commentBox" ><?php echo $post->getCommentCount(); ?>&nbsp;<?php echo $this->__('Comments'); ?></a>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="postTitle">
+            <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+        </div>
+        <div class="postContent">
+           <?php echo $post->getPostContent(); ?>
+        </div>
+    </div>
+<?php endforeach; ?> 
+<?php else: ?>  
+    <p class="note-msg"><?php echo Mage::helper('blog')->__('There are no Posts tagged with %s.', $this->getTagName()); ?></p>
+<?php endif; ?>

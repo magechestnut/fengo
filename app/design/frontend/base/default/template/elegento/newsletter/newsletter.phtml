@@ -1,0 +1,120 @@
+<?php
+/**
+ * Newsletter Popup
+ *
+ * @category   Design
+ * @package    Elegento_Newsletter
+ * @author     Elegento Team
+ */
+?>
+<?php 
+    $helper = $this->helper('egnewsletter');
+    $store = Mage::app()->getStore()->getId();
+    $uploadDir = Mage::getModel('fengo/system_config_source_file_image')->getEGUploadDir();
+    $backgroundImage = $uploadDir . '/' . $helper->getConfig('general/egnl_bg_image', $store);
+    $bgWhere = $helper->getConfig('general/egnl_bg_image_show', $store);
+    $bgWhere = ($bgWhere == 'g') || ($bgWhere == 'b');
+    $blockTitle = ($this->getBlockTitle()) ? $this->getBlockTitle() : $this->__('Subscribe');
+    $description = $helper->getConfig('general/egnl_description', $store);
+    $description = ($description) ? $description : $this->__('Sign up to get exclusive offers from <br> our favorite brands and to be well up in the news.');
+?>
+<style type='text/css' scoped>
+<?php if ($bgWhere && $helper->getConfig('general/egnl_bg_image', $store)) : ?>
+.egnewsletter-frame {background: url(<?php echo $backgroundImage;?>) center center no-repeat;}
+<?php endif; ?>
+</style>
+<div id="egnewsletter_container" class="egnewsletter-container">
+    <div class="egnewsletter-frame">
+        <div class="block block-subscribe">
+            <div class="block-title">
+                <h4 class="c-ttu c-fwn"><?php echo $blockTitle; ?></h4>
+                <div class="horizontal-separator separator-4"></div>
+            </div>
+            <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="egnewsletter">
+                <div class="block-content">
+                    <p class="newsletter-description eg-tac"><?php echo nl2br($description); ?></p>
+                    <ul class="form-list" style="list-style:none;">
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_gender')): ?>
+                        <li>
+                            <label for="gender"><?php echo $this->__('Gender') ?>:</label>
+                            <div class="input-box" style="width:auto;">
+                                <select name="gender" id="gender">
+                                    <option value=""><?php echo $this->__('Please select Gender') ?></option>
+                                    <?php echo $this->helper('egnewsletter')->getGenderOptionsHtml(); ?>
+                                </select>
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_prefix')): ?>
+                        <li>
+                            <label for="prefix"><?php echo $this->__('Prefix') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="prefix" id="prefix" placeholder="<?php echo $this->__('Your name prefix'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_firstname')): ?>
+                        <li>
+                            <label for="firstname"><?php echo $this->__('First Name') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="firstname" id="firstname" placeholder="<?php echo $this->__('Your first name'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_lastname')): ?>
+                        <li>
+                            <label for="lastname"><?php echo $this->__('Last Name') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="lastname" id="lastname" placeholder="<?php echo $this->__('Your last name'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_suffix')): ?>
+                        <li>
+                            <label for="suffix"><?php echo $this->__('Suffix') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="suffix" id="suffix" placeholder="<?php echo $this->__('Your name suffix'); ?>" class="input-text" />
+                            </div>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (Mage::getStoreConfig('egnewsletter/fields/show_dob')): ?>
+                        <li>
+                            <label for="eg_dobnew"><?php echo $this->__('Date of Birth') ?>:</label>
+                            <div class="input-box">
+                                <input type="text" name="dob" id="eg_dobnew" class="input-text" placeholder="mm/dd/yyyy" />
+                                <?php /*<img title="<?php echo $this->__('Select Date') ?>" id="eg_dobnew_picker" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'frontend/base/default/images/elegento/newsletter/datepicker.png'; ?>"  class="v-middle"/>*/?>
+                                <div id="eg_dobnew_calendar"></div>
+                            </div>
+                            <script type="text/javascript">
+                            //<![CDATA[
+                                // Calendar.setup({
+                                //     dateField: 'eg_dobnew',
+                                //     parentElement: 'eg_dobnew_calendar',
+                                //     triggerElement: 'eg_dobnew_picker'
+                                // });
+                                jQuery('#eg_dobnew').datepicker();
+                            //]]>
+                            </script>
+                        </li>
+                        <?php endif; ?>
+                        <li>
+                            <label for="email" class="required"><em>*</em><?php echo $this->__('Email') ?>:</label>
+                            <div class="input-box">
+                                <?php echo $this->getChildHtml('html_calendar') ?>
+                                <input type="text" name="email" id="email" placeholder="<?php echo $this->__('Your email address *'); ?>" class="input-text required-entry validate-email" />
+                            </div>
+                        </li>
+                        <li class="eg-tac">
+                            <input type="submit" value="<?php echo $this->__('Subscribe') ?>" title="<?php echo $this->__('Subscribe') ?>" class="button btn-subscribe" />
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var egNewsletterForm = new VarienForm('egnewsletter');
+//]]>
+</script>

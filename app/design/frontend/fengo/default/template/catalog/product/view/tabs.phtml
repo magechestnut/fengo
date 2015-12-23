@@ -1,0 +1,28 @@
+<?php 
+    $_tabs = '<div class="nav-tabs-container"><ul id="tabs" class="nav nav-tabs" data-tabs="tabs">';
+    $_panes = '<div id="tab-content" class="tab-content">';
+    $_isFirst = true;
+?>
+<?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php
+    if ($tmpBlock = $this->getChildHtml($_tab['alias'])) {
+        $_first = ($_isFirst) ? ' active' : '';
+        $_tabs .= '<li class="' . $_first . '"><a href="#' . $_tab['alias'] . '" data-toggle="tab">' . $_tab['title'] . '</a></li>';
+
+        $_panes .= '<div class="tab-pane' . $_first . '" id="' . $_tab['alias'] . '">';
+        $_panes .= '<div class="panel">' . $tmpBlock . '</div>';
+        $_panes .= '</div>';
+        $_isFirst = false;
+    }
+    ?>
+<?php endforeach; ?>
+<?php 
+    $_tabs .= '</ul></div>';
+    $_panes .= '</div>';
+?>
+
+<?php if ($_panes != ''): ?>
+    <div class="tabbable tabs-left">
+        <?php echo $_tabs . $_panes; ?>
+    </div>
+<?php endif; ?>

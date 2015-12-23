@@ -1,0 +1,66 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme Header
+ * 
+ */
+?>
+<?php 
+    $theme = $this->helper('fengo'); 
+    $store = Mage::app()->getStore()->getStoreId();
+?>
+
+<div class="header-container type1 clearfix">
+
+    <div class="header-top-container">
+        <div class="header-top header container">
+            <div class="header-top-left grid-full-below-768">
+                <div class="top-links">
+                    <?php if ($theme->getSetting('header/top_links', $store)) { echo $this->getChildHtml('topLinks'); } ?>
+                </div>
+                <p class="welcome-msg"><?php echo $this->getChildHtml('welcome'); ?> <?php echo $this->getAdditionalHtml(); ?></p>
+            </div>
+            
+            <div class="header-top-right grid-full-below-768 clearfix">
+                <?php echo $this->getChildHtml('currency'); ?>
+                <?php echo $this->getChildHtml('store_language'); ?>
+                <?php echo $this->getChildHtml('cart_mini'); ?>
+            </div>
+            
+            <?php echo $this->getChildHtml('topContainer'); ?>
+        </div>
+    </div>
+    
+    <div class="header-main-container">
+        <div class="header-main header container">
+            <div class="header-main-left grid-full-below-768">
+                <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            </div>
+            
+            <div class="header-main-center show-below-768">
+                <?php if (Mage::getSingleton('customer/session')->isLoggedIn()) : ?>
+                    <a href="<?php echo $this->helper('customer')->getLogoutUrl(); ?>"><?php echo $this->__('Log Out'); ?></a>
+                <?php else: ?>
+                    <a href="<?php echo $this->helper('customer')->getLoginUrl(); ?>"><?php echo $this->__('Log In or Register'); ?></a>
+                <?php endif; ?>
+            </div>
+            
+            <div class="header-main-right grid-full-below-768">
+                <div class="search-wrapper"><?php echo $this->getChildHtml('topSearch'); ?></div>
+
+                <div class="nav-container">
+                    <div class="nav clearer">
+                        <?php echo $this->getChildHtml('topMenu') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    var headerType = 1;
+//]]>
+</script>

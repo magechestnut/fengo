@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_system_config_edit>
+		<reference name="head">
+			<action method="addJs"><script>chestnut/jquery/jquery-1.7.2.min.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/jquery-noconflict.js</script></action>
+			<action method="addJs"><script>chestnut/jquery/plugins/mcolorpicker/mcolorpicker.min.js</script></action>
+		</reference>
+
+		<reference name="content">
+			<block type="core/template" name="fengo_content" as="fengo.content" template="chestnut/fengo/mcolorscripts.phtml"></block>
+		</reference>
+	</adminhtml_system_config_edit>
+</layout>

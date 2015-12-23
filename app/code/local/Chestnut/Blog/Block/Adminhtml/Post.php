@@ -1,0 +1,43 @@
+<?php
+
+class Chestnut_Blog_Block_Adminhtml_Post extends Mage_Adminhtml_Block_Widget_Grid_Container 
+{
+    public function __construct() {
+        $this->_controller = 'adminhtml_post';
+        $this->_blockGroup = 'blog';
+        $this->_headerText = Mage::helper('blog')->__('Blog Post Manager');
+        parent::__construct();
+        $this->setTemplate('chestnut/blog/posts.phtml');
+    }
+
+    protected function _prepareLayout() {
+        $this->setChild('add_new_button', $this->getLayout()->createBlock('adminhtml/widget_button')
+                        ->setData(array(
+                            'label' => Mage::helper('blog')->__('Add Post'),
+                            'onclick' => "setLocation('" . $this->getUrl('*/*/new') . "')",
+                            'class' => 'add'
+                        ))
+        );
+        
+        if (!Mage::app()->isSingleStoreMode()) {
+            $this->setChild('store_switcher', $this->getLayout()->createBlock('adminhtml/store_switcher')
+                            ->setUseConfirm(false)
+                            ->setSwitchUrl($this->getUrl('*/*/*', array('store' => null)))
+            );
+        }
+        $this->setChild('grid', $this->getLayout()->createBlock('blog/adminhtml_post_grid', 'blog.grid'));
+        return parent::_prepareLayout();
+    }
+
+    public function getAddNewButtonHtml() {
+        return $this->getChildHtml('add_new_button');
+    }
+
+    public function getGridHtml() {
+        return $this->getChildHtml('grid');
+    }
+
+    public function getStoreSwitcherHtml() {
+        return $this->getChildHtml('store_switcher');
+    }
+}

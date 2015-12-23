@@ -1,0 +1,72 @@
+<?php
+/**
+ * 
+ * Royal Magento Theme
+ * 
+ */
+?>
+<?php $effectParams = $this->getEffectParams();?>
+<?php 
+//echo $this->getCategoryStaticBlock(4, 'top_block');exit;
+?>
+<div class="egmenu">
+    <?php if ($this->_helper->getConfig('general/enable_mobile')) : ?>
+    <div id="chestnut-mobile">
+        <a id="mobile-trigger" href="#">
+            <span class="trigger-icon"><span class="fa fa-navicon"></span>
+            <span><?php echo $this->_helper->getConfig('general/mobile_title'); ?></span></span>
+        </a>
+    </div>
+    <ul class="chestnut-mobile accordion">
+        <?php echo $this->getMobileMenuHtml(); ?>
+    </ul>
+    <?php endif; ?>
+
+    <?php if ($this->_helper->getConfig('general/enabled')) : ?>
+    <ul id="chestnut-menu" class="clearfix">
+        <?php echo $this->getMenuHtml();?>
+    </ul>
+    <?php endif; ?>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        jQuery('#mobile-trigger').toggle(function() {
+            jQuery('.accordion').addClass('show');
+            jQuery(this).addClass('active');
+            jQuery(this).parent().addClass('active');
+            jQuery(this).parent().parent().parent().next().addClass('active');
+        }, function() {
+            jQuery('.accordion').removeClass('show');
+            jQuery(this).removeClass('active');
+            jQuery(this).parent().removeClass('active');
+            jQuery(this).parent().parent().parent().next().removeClass('active');
+        });
+
+        jQuery(function($) {
+            $("#chestnut-menu > li").hover(function() {
+                var el = $(this).find(".level0-wrapper").first();
+                el.hide();
+                // if (!el.isOnScreen(1, 1) || (el.isOnScreen(1, 1) && (el.isOnScreen(1, 1).right < 1))) {
+                //     el.css({'left': 'auto', 'right': 0});
+                // }
+                el.stop(true, true).delay(<?php echo (int)$effectParams['show_delay']; ?>).fadeIn(<?php echo (int)$effectParams['fade_in']; ?>, "easeOutCubic");
+            }, function() {
+                $(this).find(".level0-wrapper").first().stop(true, true).delay(<?php echo (int)$effectParams['hide_delay']; ?>).fadeOut(<?php echo (int)$effectParams['fade_out']; ?>, "easeInCubic");
+            });
+
+            $(".level0-wrapper.classic").each(function() {
+                $(this).find('ul > li').hover(function() {
+                    var el = $(this).find("ul").first();
+                    el.hide();
+                    el.css('z-index', 1);
+                    el.stop(true, true).delay(<?php echo (int)$effectParams['show_delay']; ?>).fadeIn(<?php echo (int)$effectParams['fade_in']; ?>, "easeOutCubic");
+                }, function() {
+                    var el = $(this).find("ul").first();
+                    el.stop(true, true).delay(<?php echo (int)$effectParams['hide_delay']; ?>).fadeOut(<?php echo (int)$effectParams['fade_out']; ?>, "easeInCubic");
+                    el.css('z-index', 'auto');
+                });
+            });
+        });
+    //]]>
+    </script>
+</div>

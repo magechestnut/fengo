@@ -1,0 +1,96 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php
+	$theme = $this->helper('fengo');
+	$_cartQty = $this->getSummaryCount();
+?>
+
+<div id="mini-cart" class="dropdown <?php echo ($_cartQty) ? 'is-not-empty' : 'is-empty'; ?>">
+
+    <span class="dropdown-toggle hide-below-768" title="<?php echo ($_cartQty) ? 'View Cart' : 'You have no items in your shopping cart.'; ?>">
+        
+        <span class="my-bag"><?php echo $this->__('MY BAG: '); ?></span>
+		<?php if ($_cartQty > 0): ?>
+        	<a class="summary" href="javascript:void(0)" title="<?php echo $this->__('View all items in your shopping cart') ?>">
+                <span class="amount"><span><?php echo $this->__($_cartQty . ' ITEM(S)'); ?></span></span>
+			</a>
+        <?php else: ?>
+        	<span class="empty"><?php echo $this->__('0 ITEM(S)') ?></span>
+        <?php endif; ?>
+
+    </span>
+
+    <span class="dropdown-toggle show-below-768" title="<?php echo ($_cartQty) ? 'View Cart' : 'You have no items in your shopping cart.'; ?>">
+
+        <?php if ($_cartQty > 0): ?>
+            <a class="summary" href="javascript:void(0)" title="<?php echo $this->__('View all items in your shopping cart') ?>">
+                <span class="subtotal">
+                    <?php if ($this->canApplyMsrp()): ?>
+                        <span class="map-cart-sidebar-total"><?php echo $this->__('CART'); ?></span>
+                    <?php else: ?>
+                        <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()); ?>
+                    <?php endif; ?>
+                </span>
+            </a>
+        <?php else: ?>
+            <span class="empty"><?php echo Mage::helper('checkout')->formatPrice(0); ?></span>
+        <?php endif; ?>
+
+    </span>
+    
+    <?php $_items = $this->getRecentItems(); ?>
+    <?php if (count($_items)): ?>
+    	<div class="dropdown-menu">
+
+			<?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+            	<span class="incl-tax">(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)</span>
+            <?php endif; ?>
+        
+            <h4 class="block-subtitle"><?php echo $this->__('Recently Added Item(s)') ?></h4>
+            <ol id="cart-mini" class="mini-products-list">
+            <?php foreach($_items as $_item): ?>
+                <?php echo $this->getItemHtml($_item) ?>
+            <?php endforeach; ?>
+            </ol>
+            <span class="subtotal">
+                <span class="subtotal-title"><?php echo $this->__('Subtotal: '); ?></span>
+                <a class="summary" href="<?php echo $this->getUrl('checkout/cart') ?>" title="<?php echo $this->__('View all items in your shopping cart') ?>">
+                    <span class="subtotal">
+                        <?php if ($this->canApplyMsrp()): ?>
+                            <span class="map-cart-sidebar-total"><?php echo $this->__('CART'); ?></span>
+                        <?php else: ?>
+                            <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()); ?>
+                        <?php endif; ?>
+                    </span>
+                </a>
+            </span>
+            <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+            
+            <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+                <div class="buttons-set">
+                    <div class="view-cart grid12-6 no-gutter">
+                        <a title="<?php echo $this->__('Cart') ?>" class="button btn-cart" href="<?php echo $this->getUrl('checkout/cart') ?>"><span><span><?php echo $this->__('Cart') ?></span></span></a>
+                    </div>
+                    <div class="checkout grid12-6 no-gutter">
+                        <a title="<?php echo $this->__('Checkout') ?>" class="button btn-checkout btn-inline " href="<?php echo $this->getCheckoutUrl(); ?>"><span><span><?php echo $this->__('Checkout') ?></span></span></a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="buttons-set">
+                    <button type="button" title="<?php echo $this->__('Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getUrl('checkout/cart') ?>')"><span><span><?php echo $this->__('Cart') ?></span></span></button>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    <?php else: ?>
+    	<div class="dropdown-menu">
+            <div class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></div>
+		</div>
+    <?php endif ?>
+
+</div>

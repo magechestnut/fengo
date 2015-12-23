@@ -1,0 +1,40 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php 
+    $enabled = $this->getConfig('general/enable') && $this->getConfig('slider/enable_slider_home');
+    $brands = ($this->getConfig('slider/all')) ? $this->getAllBrands() : $this->getBrandsInUse(); 
+    $title = ($this->getBlockName()) ? $this->getBlockName() : $this->getAttributeTitle();
+?>
+<?php if ($brands && $enabled): ?>
+<div class="brand-slider-section">
+    <h3 class="brands-title"><?php echo strtoupper($title); ?></h3>
+    <div class="brand-slider-wrapper">
+        <div id="brands-slider" class="brands-slider top-right-nav">
+        <?php foreach ($brands as $brand): ?>
+            <div class="item">
+                <a href="<?php echo $this->getBrandPageUrl($brand); ?>" title="<?php echo $this->__('Click to see more products from %s', $brand); ?>"><img src="<?php echo $this->getBrandImageUrl($brand); ?>" alt="<?php echo $brand; ?>" /></a>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+jQuery(function($) {
+    var brandSlider = $('#brands-slider');
+    brandSlider.owlCarousel({
+        singleItem: false,
+        navigation: true,
+        lazyLoad: true,
+        autoPlay: false,
+        itemsCustom: [[0, 2], [320, 2], [480, 2], [751, 4], [943, 5], [1263, 6]],
+        pagination: false,
+        navigationText: ["<span class='fa fa-angle-left'></span>", "<span class='fa fa-angle-right'></span>"]
+    });
+});
+</script>

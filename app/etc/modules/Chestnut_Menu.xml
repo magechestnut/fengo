@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Chestnut_Menu>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Chestnut_Menu>
+    </modules>
+</config>

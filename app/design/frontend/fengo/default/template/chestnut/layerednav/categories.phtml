@@ -1,0 +1,28 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+
+<ul id="cl_accordion">
+<?php 
+    $categories = $this->getStoreCategories();
+    echo $this->getSideNavigation($categories);
+?>
+</ul>
+
+<script type="text/javascript">
+jQuery('#cl_accordion').accordion();	
+jQuery('#cl_accordion').each(function(index){
+	var activeItems = jQuery(this).find('li.active');
+	activeItems.each(function(i){
+		jQuery(this).children('ul').css('display', 'block');
+		if (i == activeItems.length - 1)
+		{
+			jQuery(this).addClass("current");
+		}
+	});
+});	
+</script>

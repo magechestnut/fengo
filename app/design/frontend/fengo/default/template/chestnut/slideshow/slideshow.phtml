@@ -1,0 +1,72 @@
+<?php	
+	$slideHelper = $this->helper('slideshow');
+	$blockIds = $slideHelper -> getConfig('home/blocks');
+	$slides = explode(",", str_replace(" ", "", $blockIds));
+?>
+<?php if(count($slides) > 0): ?>
+<?php
+    $timeout = intval($slideHelper -> getConfig('general/timeout'));
+    $loop = $slideHelper -> getConfig('general/loop');
+    $speed = intval($slideHelper -> getConfig('general/speed'));
+    $pause = $slideHelper -> getConfig('general/pause');
+    $smoothHeight = $slideHelper -> getConfig('general/smooth_height');
+    $effect = $slideHelper -> getConfig('general/effect');
+?>
+<div class="home-slideshow-wrapper <?php echo $slideHelper->getConfig('home/width'); ?>">
+    <div class="home-slideshow">
+        <div id="slider-wrapper" class="slides" style="width:100%;">
+        <?php foreach ($slides as $bid): ?>
+            <?php if (!empty($bid)): ?>
+                <div class="item slide">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($bid)->toHtml(); ?>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    jQuery(document).ready(function($) {
+        
+        var owl = $('#slider-wrapper');
+        owl.owlCarousel({
+
+            singleItem: true,
+
+        <?php if ($speed): ?>
+            slideSpeed: <?php echo $speed; ?>,
+        <?php endif; ?>
+
+        <?php if ($timeout): ?>
+            autoPlay: <?php echo $timeout; ?>,
+        <?php endif; ?>
+
+        <?php if ($pause): ?>
+            stopOnHover: true,
+        <?php endif; ?>
+
+        <?php if ($loop): ?>
+            rewindNav: true,
+            rewindSpeed: 600,
+        <?php else: ?>
+            rewindNav: false,
+        <?php endif; ?>
+
+        <?php if ($smoothHeight): ?>
+            autoHeight: false,
+        <?php endif; ?>
+
+        <?php if ($effect): ?>
+            transitionStyle: '<?php echo $effect; ?>',
+        <?php endif; ?>
+            navigationText: ["<span class='fa fa-angle-left'></span>", "<span class='fa fa-angle-right'></span>"],
+            navigation: true
+
+        });
+
+    });
+//]]>
+</script>
+<?php endif; ?>

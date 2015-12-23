@@ -1,0 +1,14 @@
+<?php if ($avatarEnabled = $this->helper('chestnut_avatar')->enabledAvatar()): ?>
+	<?php if ($this->getCustomer()->getAvatarSrc()!="" && $this->getCustomer()->getAvatarValid()==0):?>
+		<?php $avatar = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."chestnut/avatar".$this->getCustomer()->getAvatarSrc(); ?>
+		<?php $msg = $this->__('Your avatar is being checked by our team'); ?>
+	<?php elseif ($this->getCustomer()->getAvatarSrc() != "" && $this->getCustomer()->getAvatarValid()==1):?>
+		<?php $avatar = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."chestnut/avatar".$this->getCustomer()->getAvatarSrc(); ?>
+		<?php $msg = ""; ?>
+	<?php else:?>
+		<?php $avatar = $this->getSkinUrl("images/chestnut/avatar/avatar.png"); ?>
+		<?php $msg = $this->__('Customize your account with an avatar'); ?>
+	<?php endif;?>
+	<div class="avatar-photo"><img id="avatar_image" src="<?php echo $avatar ?>" width="50" alt="Avatar"/></div>
+	<p id="upload_message"><?php echo $msg ?></p>
+<?php endif;?>

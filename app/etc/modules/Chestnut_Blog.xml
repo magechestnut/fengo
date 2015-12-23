@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category	Chestnut
+ * @package		Chestnut_Blog
+ * @author		Chestnut
+ * @copyright	Copyright 2015 Chestnut
+ */
+ -->
+<config>
+    <modules>
+        <Chestnut_Blog>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+				<Chestnut_Fengo />
+			</depends>
+        </Chestnut_Blog>
+    </modules>
+</config>

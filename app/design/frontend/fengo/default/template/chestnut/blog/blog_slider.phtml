@@ -1,0 +1,49 @@
+<?php
+    $posts = $this->getPosts();
+?>
+<?php if ($posts): ?>
+<?php
+    $blockName = $this->getBlockName();
+    $blockName = ($blockName) ? $blockName : $this->helper('blog')->__("From the Blog");
+?>
+<div class="cms-block from-the-blog">
+    <div class="from-the-blog-container">
+        <h6 class="cms-block-title"><?php echo $blockName; ?></h6>
+        <div class="itemslider-wrapper blog-slider-wrapper">
+            <div id="blog-slider" class="itemslider itemslider-responsive blog-slider">
+            <?php foreach ($posts as $post): ?>
+                <div class="item">
+                    <?php if($post_image = $post->getImage()): ?>
+                    <div class="post-image c-hoveropacity">
+                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$post_image; ?>" alt=""/>
+                    </div>
+                    <?php endif; ?>
+                    <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+                    <div class="clear"></div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+        jQuery(function($) {
+            var owlBlog = $('#blog-slider');
+            var owlBlogBreakpoints = [[0, 1], [320, 1], [480, 1], [751, 1], [960, 2], [1263, 2]];
+            owlBlog.owlCarousel({
+                lazyLoad: true,
+                responsive: true,
+                items: 2,
+                autoPlay: true,
+                itemsCustom: owlBlogBreakpoints,
+                stopOnHover: true,
+                rewindNav: true,
+                rewindSpeed: 600,
+                pagination: false,
+                navigation: true
+            });
+        });
+    //]]>
+    </script>
+</div>
+<?php endif; ?>

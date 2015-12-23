@@ -1,0 +1,27 @@
+<?php $post = $this->getPost() ?>
+<?php $postTitle = urlencode(trim($post->getTitle())); ?>
+<?php $postImageUrl = urlencode(trim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'wysiwyg/' . $post->getImage())); ?>
+<?php $postAddress = urlencode(trim($post->getAddress())); ?>
+<?php $postSummary = urlencode(trim($post->getShortContent())); ?>
+<ul class="share-links">
+    <li>
+        <?php $_u = "&amp;u=" . $postAddress . "&amp;t=" . $postTitle; ?>
+        <a href="<?php echo 'http://www.facebook.com/sharer/sharer.php?' . $_u; ?>" target="_blank" title="<?php echo $this->__('Share on Facebook') ?>" class="link-facebook">
+            <?php echo $this->__('Share on Facebook') ?>
+        </a>
+    </li>
+    <li>
+        <a href="<?php echo 'http://twitter.com/home?status=' . $postTitle . '+' . $postAddress; ?>" target="_blank" title="<?php echo $this->__('Share on Twitter') ?>" class="link-twitter"><?php echo $this->__('Share on Twitter') ?></a>
+    </li>
+    <li>
+        <?php $_u = "&amp;subject=" . $postTitle . "&amp;body=" . $postSummary; ?>
+        <a href="<?php echo 'mailto:?' . $_u; ?>" class="link-email-friend" title="<?php echo $this->__('Share on Email') ?>"><?php echo $this->__('Share on Email') ?></a>
+    </li>
+    <li>
+        <?php $_u = "&amp;url=" . $postAddress . "&amp;title=" . $postTitle . "&amp;summary=" . urlencode(trim($postSummary)) . "&amp;source=" . $postImageUrl; ?>
+        <a href="<?php echo 'https://www.linkedin.com/shareArticle?mini=true' . $_u; ?>" target="_blank" title="<?php echo $this->__('Share on LinkedIn') ?>" class="link-linkedin"><?php echo $this->__('Share on LinkedIn') ?></a>
+    </li>
+    <li>
+        <a href="<?php echo 'https://plus.google.com/share?url=' .  $postAddress; ?>" target="_blank" title="<?php echo $this->__('Share on Google Plus') ?>" class="link-google-plus"><?php echo $this->__('Share on Google Plus') ?></a>
+    </li>
+</ul>

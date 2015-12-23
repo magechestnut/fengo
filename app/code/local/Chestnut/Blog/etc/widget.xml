@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<widgets>
+    <blog_list type="blog/last" translate="name description" module="blog">
+        <name>Blog: Latest Posts</name>
+        <description>Adds a list of latest post from Blog</description>
+        <parameters>
+            <blog_count>
+                <label>How many posts to show</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>1</required>
+            </blog_count>
+        </parameters>
+    </blog_list>
+</widgets> 

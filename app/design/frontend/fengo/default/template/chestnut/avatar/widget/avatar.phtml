@@ -1,0 +1,54 @@
+<?php
+/**
+ * 
+ * Fengo Magento Theme
+ * 
+ */
+?>
+<?php if ($avatarEnabled = $this->helper('chestnut_avatar')->enabledAvatar()): ?>
+    <?php if ($this->getCustomer()->getAvatarSrc()!="" && $this->getCustomer()->getAvatarValid()==0):?>
+    	<?php $avatar = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."chestnut/avatar".$this->getCustomer()->getAvatarSrc(); ?>
+    	<?php $msg = $this->__('Your avatar is being checked by our team'); ?>
+    <?php elseif ($this->getCustomer()->getAvatarSrc() != "" && $this->getCustomer()->getAvatarValid()==1):?>
+    	<?php $avatar = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."chestnut/avatar".$this->getCustomer()->getAvatarSrc(); ?>
+    	<?php $msg = ""; ?>
+    <?php else:?>
+    	<?php $avatar = $this->getSkinUrl("images/chestnut/avatar/avatar.png"); ?>
+    	<?php $msg = $this->__('Customize your account with an avatar'); ?>
+    <?php endif;?>
+    <?php $title = ($this->getTitle()) ? $this->getTitle() : 'Avatar'; ?>
+    <div class="upload-avatar">
+        <label for="btn_avatar" class="avatar-title"><span><?php echo $title; ?></span></label><br/>
+        <div class="avatar-photo"><img id="avatar_image" src="<?php echo $avatar ?>" width="100" alt="Avatar"/></div>
+    	<button id="btn_avatar" class="button btn_avatar"><span><span><?php echo $this->__('Browse') ?></span></span></button>
+    	<p id="upload_message"><?php echo $msg ?></p>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+        document.observe("dom:loaded", function() {
+        	new AjaxUpload('#btn_avatar', {
+        		action: "<?php echo $this->helper('chestnut_avatar')->getUploadUrl();?>",
+        		name: 'photo',
+        		autoSubmit: true,
+        		onSubmit: function(file, ext){
+                    if (!(ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
+                    	$("upload_message").innerHTML="<span style='color:red;'><?php echo $this->__('File extension is not correct (.jpg or .png or .gif)') ?></span>";
+                        return false;
+                    }
+        		},
+        		onComplete : function(file, response){
+    				var res = eval('('+response+')');
+    				if (res.success == true){
+    					$("avatar_image").src=res.message;
+    					$("upload_message").innerHTML="";
+    				} else {
+    					$("avatar_image").src='<?php echo $this->getSkinUrl("images/chestnut/avatar/avatar.png") ?>';
+    					$("upload_message").innerHTML="<span style='color:red;'>"+res.message+"</span>";
+    				}
+        		}
+        	});
+        });
+
+    //]]>
+    </script>
+<?php endif;?>

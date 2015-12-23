@@ -1,0 +1,46 @@
+<?php
+
+$_storeCode = Mage::app()->getStore()->getCode();
+$_isEnabled = Mage::getStoreConfig('fengo_setting/twitterfeed/twitterfeed_enable', $_storeCode);
+$_widgetId = Mage::getStoreConfig('fengo_setting/twitterfeed/twitter_widgetkey', $_storeCode);
+$_showCounts = Mage::getStoreConfig('fengo_setting/twitterfeed/twitter_show_counts', $_storeCode);
+
+if ($_widgetId && $_isEnabled) :
+
+?>
+<script type="text/javascript">
+function handleTweets(tweets){
+    var x = tweets.length;
+    var n = 0;
+    var element = document.getElementById('feed_container');
+    var html = '<ul>';
+    while(n < x) {
+      html += '<li>' + tweets[n] + '</li>';
+      n++;
+    }
+    html += '</ul>';
+    element.innerHTML = html;
+}
+
+jQuery(document).ready(function(){
+    var widgetId = '<?php echo $_widgetId ?>';
+    var showCounts = <?php echo $_showCounts ?>;
+    twitterFetcher.fetch(widgetId, 'feed_container', showCounts, true, true, true, dateFormatter, false);
+    
+    function dateFormatter(date) {
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+    }
+});
+</script>
+<div class="cms-block twitter-feed">
+    <h6 class="cms-block-title">
+        <?php echo $this->getBlockName(); ?>
+        <a href="#" class="follow-button">Follow</a>
+    </h6>
+    <div class="cms-block-content">
+        <div id="feed_container">
+        </div>
+    </div>
+</div>
+<?php endif; ?>

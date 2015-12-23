@@ -1,0 +1,19 @@
+<?php if ($this->getCategories()->count() && Mage::getStoreConfig(Chestnut_Blog_Helper_Config::XML_CATEGORIES_MENU)): ?>  
+<div class="block block-blog-categories">
+    <div class="block-title">
+        <strong><span><?php echo Mage::helper('blog')->__('Categories'); ?></span></strong>
+    </div>
+    <div class="block-content">
+        <div class="cl_all_categories">
+            <ul id="cl_accordion">
+                <?php echo $this->getCategoriesAccordion(); ?>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('#cl_accordion').accordion(); 
+            });
+        </script>
+    </div>    
+</div>
+<?php endif; ?>
